@@ -28,6 +28,7 @@ public class RobotMap {
     public static final int SHOOTER_TURNTABLE_SPARK = 9;
     public static final int CLIMBER_WINCH_SPARK = 10;
     public static final int LOW_GOAL_GATE_SPARK = 11;
+    public static final int BLINKIN_SPARK = 12;
 
 
     //PWM
@@ -49,8 +50,9 @@ public class RobotMap {
     public static final int CLIMBER_RETRACTED_PROX = 6;
     public static final int LOW_GOAL_GATE_PROX = 7;
 
-	// Encoders
-	public static final int DRIVETRAIN_DRIVE_ENCODER_A = 1;
-	public static final int DRIVETRAIN_DRIVE_ENCODER_B = 2;
+    // Speed
+    public static final int INTAKE_COLLECT_SPEED = 100;
+    public static final int INTAKE_EJECT_SPEED = -100;
+	
 
 }

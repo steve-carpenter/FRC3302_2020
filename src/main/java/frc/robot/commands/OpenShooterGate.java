@@ -17,15 +17,17 @@ public class OpenShooterGate extends CommandBase {
 
     @Override
     public void execute() {
+        Robot.lowGoalGate.openGate();
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return Robot.lowGoalGate.isGateOpen();
     }
 
     @Override
     public void end(boolean interrupted) {
+        Robot.lowGoalGate.stopGate();
     }
 
 }

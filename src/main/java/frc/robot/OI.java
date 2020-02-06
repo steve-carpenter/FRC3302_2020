@@ -10,11 +10,19 @@
 
 package frc.robot;
 
-import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.*;
+import frc.robot.commands.AutoShoot;
+import frc.robot.commands.CloseLowGoalGate;
+import frc.robot.commands.CloseShooterGate;
+import frc.robot.commands.ExtendClimber;
+import frc.robot.commands.ManualShoot;
+import frc.robot.commands.OpenLowGoalGate;
+import frc.robot.commands.OpenShooterGate;
+import frc.robot.commands.RearIntakeOn;
+import frc.robot.commands.RetractClimber;
+import frc.robot.commands.SpeedUpFlywheel;
 
 
 /**
@@ -72,11 +80,7 @@ driverControls = new Joystick(0);
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("FrontIntakeOn", new FrontIntakeOn());
-        SmartDashboard.putData("FrontIntakeOff", new FrontIntakeOff());
         SmartDashboard.putData("RearIntakeOn", new RearIntakeOn());
-        SmartDashboard.putData("RearIntakeOff", new RearIntakeOff());
         SmartDashboard.putData("AutoShoot", new AutoShoot());
         SmartDashboard.putData("ManualShoot", new ManualShoot());
         SmartDashboard.putData("SpeedUpFlywheel", new SpeedUpFlywheel());

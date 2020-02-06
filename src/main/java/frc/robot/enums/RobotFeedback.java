@@ -1,8 +1,9 @@
 package frc.robot.enums;
 
-public enum RobotState {
-    CONFETTI,
-    FIRE_LARGE,
-    LARSON_SCANNER;
+public enum RobotFeedback {
 
+    CLIMBING,
+    SHOOTER_ALIGNED,
+    SHOOOTER_AT_SPEED,
+    HANGING;
 }

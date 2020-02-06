@@ -34,6 +34,11 @@ public class MoveBallToLocation2 extends MoveBallToLocation {
         return Robot.conveyor.isBall2Present();
     }
 
+    @Override
+    protected boolean canIndex() {
+        return !Robot.conveyor.isBall3Present();
+    }
+
     
     
 }

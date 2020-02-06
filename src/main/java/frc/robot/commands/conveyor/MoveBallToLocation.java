@@ -18,6 +18,8 @@ public abstract class MoveBallToLocation extends CommandBase {
     protected abstract void runConveyor();
     protected abstract void stopConveyor();
     protected abstract boolean isBallPresent();
+    protected abstract boolean canIndex();
+
 
     // Called just before this Command runs the first time
     @Override
@@ -33,7 +35,7 @@ public abstract class MoveBallToLocation extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     public boolean isFinished() {
-        return isBallPresent();
+        return isBallPresent() && canIndex();
     }
 
     // Called once after isFinished returns true

@@ -17,7 +17,12 @@ public class MoveBallToLocation3 extends MoveBallToLocation {
 
     @Override
     protected boolean isBallPresent() {
-        return Robot.conveyor.isBall1Present();
+        return Robot.conveyor.isBall3Present();
+    }
+
+    @Override
+    protected boolean canIndex() {
+       return !Robot.conveyor.isBall4Present();
     }
 
     

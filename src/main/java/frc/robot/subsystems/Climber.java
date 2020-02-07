@@ -1,28 +1,25 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.utils.motors.Motor;
+import frc.robot.utils.motors.configurations.ClimberMotorConfiguration;
 
 public class Climber extends SubsystemBase {
 
-private Spark winch;
+private Motor winch;
+private ClimberMotorConfiguration climberMotorConfiguration;
 private DigitalInput climberExtended;
 private DigitalInput climberRetracted;
 
-    public Climber() {
-winch = new Spark(RobotMap.CLIMBER_WINCH_SPARK);
-climberExtended = new DigitalInput(RobotMap.CLIMBER_EXTENDED_PROX);
-climberRetracted = new DigitalInput(RobotMap.CLIMBER_RETRACTED_PROX);
-
-winch.setInverted(false);
-
-addChild("Winch",winch);
-addChild("ClimberExtended",climberExtended);
-addChild("ClimberRetracted",climberRetracted);
+    public Climber(ClimberMotorConfiguration config) {
+        this.climberMotorConfiguration = config;
+        if(config.disabled) return;
+        winch = Motor.initMotor(config.winch);
+        climberExtended = new DigitalInput(RobotMap.CLIMBER_EXTENDED_PROX);
+        climberRetracted = new DigitalInput(RobotMap.CLIMBER_RETRACTED_PROX);
     }
-
 
     @Override
     public void periodic() {
@@ -31,15 +28,15 @@ addChild("ClimberRetracted",climberRetracted);
     }
 
     public void extendClimber(){
-        winch.set(1);
+        winch.setPower(1);;
     }
 
     public void retractClimber(){
-        winch.set(-1);
+        winch.setPower(-1);
     }
 
     public void stopClimber(){
-        winch.set(0);
+        winch.setPower(0);
     }
 
     public boolean isClimberExtended(){
@@ -48,6 +45,15 @@ addChild("ClimberRetracted",climberRetracted);
 
     public boolean isClimberRetracted(){
         return climberRetracted.get();
+    }
+
+    public void setPower(double power){
+        if(climberMotorConfiguration.disabled) return;
+        winch.setPower(power);
+    }
+    public void setSpeed(double speed){
+        if(climberMotorConfiguration.disabled) return;
+        winch.setSpeed(speed);
     }
 
 }

@@ -11,6 +11,7 @@ import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LowGoalGate;
 import frc.robot.subsystems.Shooter;
+import frc.robot.utils.motors.configurations.ClimberMotorConfiguration;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -43,7 +44,7 @@ public static LowGoalGate lowGoalGate;
     drive = new Drive();
     intake = new Intake();
     shooter = new Shooter();
-    climber = new Climber();
+    climber = new Climber(new ClimberMotorConfiguration());
     lED = new LED();
     lowGoalGate = new LowGoalGate();
   }

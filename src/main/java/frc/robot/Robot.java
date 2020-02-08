@@ -11,7 +11,9 @@ import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LowGoalGate;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 import frc.robot.utils.motors.configurations.ClimberMotorConfiguration;
+import frc.robot.utils.motors.configurations.FlywheelMotorConfiguration;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,6 +34,7 @@ public static Shooter shooter;
 public static Climber climber;
 public static LED lED;
 public static LowGoalGate lowGoalGate;
+public static Turret turret;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -43,10 +46,11 @@ public static LowGoalGate lowGoalGate;
     conveyor = new Conveyor();
     drive = new Drive();
     intake = new Intake();
-    shooter = new Shooter();
+    shooter = new Shooter(new FlywheelMotorConfiguration());
     climber = new Climber(new ClimberMotorConfiguration());
     lED = new LED();
     lowGoalGate = new LowGoalGate();
+    turret = new Turret();
   }
 
   /**

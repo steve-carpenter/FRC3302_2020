@@ -7,39 +7,34 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.utils.motors.Motor;
+import frc.robot.utils.motors.configurations.FlywheelMotorConfiguration;
+import frc.robot.utils.motors.configurations.MotorConfiguration;
 
 public class Shooter extends SubsystemBase {
 
-    private Spark flywheel;
+    private Motor flywheel;
+    private FlywheelMotorConfiguration flywheelMotorConfiguration;
     private Spark shooterGate;
     private DigitalInput shooterGateOpen;
     private DigitalInput shooterGateClosed;
     private Encoder flywheelEncoder;
-    private Spark turntable;
 
 
-    public Shooter() {
-        flywheel = new Spark(RobotMap.SHOOTER_FLYWHEEL_SPARK);
+    public Shooter(FlywheelMotorConfiguration config) {
+        this.flywheelMotorConfiguration = config;
+        if(config.disabled) return;
+        flywheel = Motor.initMotor(config.motor);
+
         shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
         shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
         shooterGateClosed = new DigitalInput(9);
-        flywheelEncoder = new Encoder(10, 11, false, EncodingType.k4X);
-        turntable = new Spark(12);
-
-        flywheel.setInverted(false);
         shooterGate.setInverted(false);
-        flywheelEncoder.setDistancePerPulse(1.0);
-        flywheelEncoder.setPIDSourceType(PIDSourceType.kRate);
-        turntable.setInverted(false);
-
-
-        addChild("Flywheel", flywheel);      
+     
         addChild("ShooterGate", shooterGate);
         addChild("ShooterGateOpen", shooterGateOpen);
         addChild("ShooterGateClosed", shooterGateClosed);
-        addChild("FlywheelEncoder", flywheelEncoder);
-        addChild("Turntable", turntable);
-        
+        addChild("FlywheelEncoder", flywheelEncoder);        
     }
 
     @Override
@@ -56,25 +51,12 @@ public class Shooter extends SubsystemBase {
         return shooterGateClosed.get();
     }
 
-    public boolean isShooterAtSpeed(){
-        // TODO set speed variable w/ in subsystem
-        return flywheel.getSpeed() == 1;
+    public void setFlywheelSpeed(double speed){
+        flywheel.setSpeed(speed);
     }
 
-    public void clockwiseTurntable(){
-        turntable.set(0.5);
-    }
-
-    public void counterclockwiseTurntable(){
-        turntable.set(-0.5);
-    }
-
-    public void spinFlywheel(){
-        flywheel.set(1);
-    }
-
-    public void stopFlywheel(){
-        flywheel.set(0);
+    public double distanceToSpeed(double distance){
+        return distance * 0.75;
     }
 
 }

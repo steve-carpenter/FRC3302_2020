@@ -16,7 +16,7 @@ private DigitalInput climberRetracted;
     public Climber(ClimberMotorConfiguration config) {
         this.climberMotorConfiguration = config;
         if(config.disabled) return;
-        winch = Motor.initMotor(config.winch);
+        winch = Motor.initMotor(config.motor);
         climberExtended = new DigitalInput(RobotMap.CLIMBER_EXTENDED_PROX);
         climberRetracted = new DigitalInput(RobotMap.CLIMBER_RETRACTED_PROX);
     }

@@ -7,10 +7,8 @@ public abstract class Motor {
         switch(mc.type){
             case SPARK:
                 return new MotorSpark(mc);
-
             case SPARK_MAX:
                 return new MotorSparkMax(mc);
-
             default:
                 return null;
         }

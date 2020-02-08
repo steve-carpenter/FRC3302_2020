@@ -13,7 +13,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoShoot;
 import frc.robot.commands.CloseLowGoalGate;
 import frc.robot.commands.CloseShooterGate;
 import frc.robot.commands.ExtendClimber;
@@ -23,6 +22,8 @@ import frc.robot.commands.OpenShooterGate;
 import frc.robot.commands.RearIntakeOn;
 import frc.robot.commands.RetractClimber;
 import frc.robot.commands.SpeedUpFlywheel;
+import frc.robot.commands.conveyor.MoveBall;
+import frc.robot.commands.limelight.AutoAlignSpeed;
 
 
 /**
@@ -81,7 +82,8 @@ driverControls = new Joystick(0);
 
         // SmartDashboard Buttons
         SmartDashboard.putData("RearIntakeOn", new RearIntakeOn());
-        SmartDashboard.putData("AutoShoot", new AutoShoot());
+        SmartDashboard.putData("Flywheel - AutoAlignSpeed", new AutoAlignSpeed());
+        SmartDashboard.putData("Conveyor - Intake Ball FULL", new MoveBall());
         SmartDashboard.putData("ManualShoot", new ManualShoot());
         SmartDashboard.putData("SpeedUpFlywheel", new SpeedUpFlywheel());
         SmartDashboard.putData("ExtendClimber", new ExtendClimber());

@@ -37,6 +37,5 @@ public class MotorSpark extends Motor {
         
         public void setSpeed(double speed){
             spark.set(speed);
-        }
-    
+        }    
     }

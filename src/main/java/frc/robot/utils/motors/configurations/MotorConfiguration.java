@@ -19,11 +19,11 @@ public class MotorConfiguration {
         SPARK_MAX, SPARK
     }
 
-    public static MotorConfiguration spark(int id){
+    public static MotorConfiguration sparkmax(int id){
         return new MotorConfiguration(MotorType.SPARK_MAX, id);
     }
 
-    public static MotorConfiguration pwm(int id){
+    public static MotorConfiguration spark(int id){
         return new MotorConfiguration(MotorType.SPARK, id);
     }
 

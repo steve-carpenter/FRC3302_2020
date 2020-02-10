@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ColorWheelSpinner;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
@@ -35,6 +36,7 @@ public static Climber climber;
 public static LED lED;
 public static LowGoalGate lowGoalGate;
 public static Turret turret;
+public static ColorWheelSpinner colorWheelSpinner;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -51,6 +53,7 @@ public static Turret turret;
     lED = new LED();
     lowGoalGate = new LowGoalGate();
     turret = new Turret();
+    colorWheelSpinner = new ColorWheelSpinner();
   }
 
   /**

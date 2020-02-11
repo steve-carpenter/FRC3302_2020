@@ -9,7 +9,11 @@
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
       "mainClass": "frc.robot.Main",
+<<<<<<< HEAD
       "projectName": "FRC3302_2020"
+=======
+      "projectName": "FRC_2020"
+>>>>>>> 01e0c8b603def8a5a7cd99d0a2dae9c2faccf1da
     },
     {
       "type": "wpilib",

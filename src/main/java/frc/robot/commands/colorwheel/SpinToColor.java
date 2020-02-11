@@ -1,10 +1,8 @@
 
 package frc.robot.commands.colorwheel;
 
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class SpinToColor extends CommandBase {
 
@@ -42,7 +40,6 @@ public class SpinToColor extends CommandBase {
                     Robot.colorWheelSpinner.spinColorWheel();
                 }
                 else{
-                    Robot.colorWheelSpinner.stopColorWheel();
                     end(false);
                 }
 
@@ -52,7 +49,6 @@ public class SpinToColor extends CommandBase {
                     Robot.colorWheelSpinner.spinColorWheel();
                 }
                 else{
-                    Robot.colorWheelSpinner.stopColorWheel();
                     end(false);
                 }
 
@@ -62,7 +58,6 @@ public class SpinToColor extends CommandBase {
                     Robot.colorWheelSpinner.spinColorWheel();
                 }
                 else{
-                    Robot.colorWheelSpinner.stopColorWheel();
                     end(false);
                 }
 

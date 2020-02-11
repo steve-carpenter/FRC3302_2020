@@ -44,6 +44,7 @@ public static ColorWheelSpinner colorWheelSpinner;
    */
   @Override
   public void robotInit() {
+    oi = new OI();
     limelight = new Limelight();
     conveyor = new Conveyor();
     drive = new Drive();
@@ -131,5 +132,6 @@ public static ColorWheelSpinner colorWheelSpinner;
    */
   @Override
   public void testPeriodic() {
+    // teleopPeriodic();
   }
 }

@@ -30,7 +30,7 @@ public class TankDrive extends CommandBase {
     public void execute() {
         double moveSpeed = -Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
 		double rotateSpeed = Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
-		Robot.drive.arcadeDrive(moveSpeed, rotateSpeed);
+		Robot.drive.tankDrive(moveSpeed, rotateSpeed);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class TankDrive extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.drive.arcadeDrive(0, 0);
+        Robot.drive.tankDrive(0, 0);
     }
 }

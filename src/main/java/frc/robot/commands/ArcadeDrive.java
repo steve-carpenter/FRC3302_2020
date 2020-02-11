@@ -20,7 +20,7 @@ public class ArcadeDrive extends CommandBase {
     public void execute() {
         double leftSpeed = Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
 		double rightSpeed = Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
-		Robot.drive.tankDrive(leftSpeed, rightSpeed);
+		Robot.drive.arcadeDrive(leftSpeed, rightSpeed);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ArcadeDrive extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.drive.tankDrive(0,0);
+        Robot.drive.arcadeDrive(0,0);
     }
 
 }

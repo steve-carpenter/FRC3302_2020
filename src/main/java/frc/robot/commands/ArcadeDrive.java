@@ -6,7 +6,9 @@ import frc.robot.RobotMap;
 
 public class ArcadeDrive extends CommandBase {
 
-    public ArcadeDrive() {
+    private Robot m_Robot;
+
+    public ArcadeDrive(Robot robot) {
 
         addRequirements(Robot.drive);
 

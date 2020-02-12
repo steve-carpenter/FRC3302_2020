@@ -2,13 +2,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class ExtendClimber extends CommandBase {
 
-    public ExtendClimber() {
+    private RobotContainer m_subsystem;
 
-        addRequirements(Robot.climber);
+    public ExtendClimber(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_climber);
     }
 
     @Override
@@ -17,17 +19,17 @@ public class ExtendClimber extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.climber.extendClimber();
+        m_subsystem.m_climber.extendClimber();
     }
 
     @Override
     public boolean isFinished() {
-        return Robot.climber.isClimberExtended();
+        return m_subsystem.m_climber.isClimberExtended();
     }
 
     @Override
     public void end(boolean interrupted) {
-        Robot.climber.stopClimber();
+        m_subsystem.m_climber.stopClimber();
     }
 
 }

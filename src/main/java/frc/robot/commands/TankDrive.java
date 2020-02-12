@@ -12,14 +12,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 
 public class TankDrive extends CommandBase {
 
-    public TankDrive() {
+    private RobotContainer m_subsystem;
 
-        addRequirements(Robot.drive);
-
+    public TankDrive(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_drive);
     }
 
     @Override
@@ -28,9 +30,9 @@ public class TankDrive extends CommandBase {
 
     @Override
     public void execute() {
-        double moveSpeed = -Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
-		double rotateSpeed = Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
-		Robot.drive.tankDrive(moveSpeed, rotateSpeed);
+        double moveSpeed = -m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
+		double rotateSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
+		m_subsystem.m_drive.tankDrive(moveSpeed, rotateSpeed);
     }
 
     @Override
@@ -40,6 +42,6 @@ public class TankDrive extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.drive.tankDrive(0, 0);
+        m_subsystem.m_drive.tankDrive(0, 0);
     }
 }

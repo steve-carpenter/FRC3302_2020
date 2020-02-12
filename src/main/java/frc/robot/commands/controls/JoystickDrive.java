@@ -2,6 +2,7 @@ package frc.robot.commands.controls;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.RobotMap;
 
 public class JoystickDrive extends CommandBase {
     private RobotContainer m_subsystem;
@@ -23,8 +24,8 @@ public class JoystickDrive extends CommandBase {
 
     @Override
     public void execute(){
-        double moveSpeed = -Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
-		double rotateSpeed = Robot.oi.driverControls.getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
+        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
+		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
         m_subsystem.m_drive.tankDrive(leftSpeed, rightSpeed);
     }
 

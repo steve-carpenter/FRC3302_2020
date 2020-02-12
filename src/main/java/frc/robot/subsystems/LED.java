@@ -28,7 +28,6 @@ public class LED extends SubsystemBase {
     public LED() {
         blinkin = new Spark(RobotMap.BLINKIN_SPARK);
         addChild("blinkin value", blinkin);
-        setDefaultCommand(new EnableLEDs());
     }
 
     @Override

@@ -26,11 +26,11 @@ addChild("RearIntake",rearIntake);
     public void periodic() {
     }
 
-    public void intakeFront(int speed){
+    public void intakeFront(double speed){
         frontIntake.set(speed);
     }
 
-    public void intakeRear(int speed){
+    public void intakeRear(double speed){
         rearIntake.set(speed);
     }
 

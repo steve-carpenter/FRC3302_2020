@@ -2,9 +2,11 @@
 package frc.robot.commands.colorwheel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class SpinToColor extends CommandBase {
+    private RobotContainer m_subsystem;
+    private SpinnerColor m_color;
 
     public enum SpinnerColor{
         BLUE,
@@ -13,11 +15,10 @@ public class SpinToColor extends CommandBase {
         YELLOW
     }
 
-    private SpinnerColor color;
-
-    public SpinToColor(SpinnerColor color) {
-        addRequirements(Robot.colorWheelSpinner);
-        color = this.color;
+    public SpinToColor(RobotContainer subsystem, SpinnerColor color) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_colorwheel);
+        color = this.m_color;
     }
 
     @Override
@@ -26,18 +27,18 @@ public class SpinToColor extends CommandBase {
 
     @Override
     public void execute() {
-        switch(color){
+        switch(m_color){
             case RED:{
-                if(!Robot.colorWheelSpinner.isRed()){
-                    Robot.colorWheelSpinner.spinColorWheel();
+                if(!m_subsystem.m_colorwheel.isRed()){
+                    m_subsystem.m_colorwheel.spinColorWheel();
                 }
                 else{
                     end(false);
                 }
             }
             case GREEN:{
-                if(!Robot.colorWheelSpinner.isGreen()){
-                    Robot.colorWheelSpinner.spinColorWheel();
+                if(!m_subsystem.m_colorwheel.isGreen()){
+                    m_subsystem.m_colorwheel.spinColorWheel();
                 }
                 else{
                     end(false);
@@ -45,8 +46,8 @@ public class SpinToColor extends CommandBase {
 
             }
             case BLUE:{
-                if(!Robot.colorWheelSpinner.isBlue()){
-                    Robot.colorWheelSpinner.spinColorWheel();
+                if(!m_subsystem.m_colorwheel.isBlue()){
+                    m_subsystem.m_colorwheel.spinColorWheel();
                 }
                 else{
                     end(false);
@@ -54,15 +55,15 @@ public class SpinToColor extends CommandBase {
 
             }
             case YELLOW:{
-                if(!Robot.colorWheelSpinner.isYellow()){
-                    Robot.colorWheelSpinner.spinColorWheel();
+                if(!m_subsystem.m_colorwheel.isYellow()){
+                    m_subsystem.m_colorwheel.spinColorWheel();
                 }
                 else{
                     end(false);
                 }
 
             }
-            System.out.println("Trying to match color: "+ color);
+            System.out.println("Trying to match color: "+ m_color);
         }
 
     }
@@ -74,7 +75,7 @@ public class SpinToColor extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.colorWheelSpinner.stopColorWheel();
+        m_subsystem.m_colorwheel.stopColorWheel();
     }
 
 }

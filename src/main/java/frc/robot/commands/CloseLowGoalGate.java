@@ -1,12 +1,15 @@
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class CloseLowGoalGate extends CommandBase {
 
-    public CloseLowGoalGate() {
+    private RobotContainer m_subsystem;
 
-        addRequirements(Robot.lowGoalGate);
+    public CloseLowGoalGate(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_lowGoalGate);
 
     }
 
@@ -16,16 +19,16 @@ public class CloseLowGoalGate extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.lowGoalGate.closeGate();
+        m_subsystem.m_lowGoalGate.closeGate();
     }
 
     @Override
     public boolean isFinished() {
-        return Robot.lowGoalGate.isGateClosed();
+        return m_subsystem.m_lowGoalGate.isGateClosed();
     }
 
     @Override
     public void end(boolean interrupted) {
-        Robot.lowGoalGate.stopGate();
+        m_subsystem.m_lowGoalGate.stopGate();
     }
 }

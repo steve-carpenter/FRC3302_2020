@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class RetractClimber extends CommandBase {
+    private RobotContainer m_subsystem;
 
-    public RetractClimber() {
-
-        addRequirements(Robot.climber);
-
+    public RetractClimber(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_climber);
     }
 
     @Override
@@ -17,17 +17,17 @@ public class RetractClimber extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.climber.retractClimber();
+        m_subsystem.m_climber.retractClimber();
     }
 
     @Override
     public boolean isFinished() {
-        return Robot.climber.isClimberRetracted();
+        return m_subsystem.m_climber.isClimberRetracted();
     }
 
     @Override
     public void end(boolean interupted) {
-        Robot.climber.stopClimber();
+        m_subsystem.m_climber.stopClimber();
     }
 
 }

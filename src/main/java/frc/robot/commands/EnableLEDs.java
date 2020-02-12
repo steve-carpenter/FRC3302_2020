@@ -1,18 +1,22 @@
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.enums.BlinkinPattern;
 import frc.robot.enums.RobotFeedback;
 
 public class EnableLEDs extends CommandBase {
 
-    public EnableLEDs() {
-        addRequirements(Robot.lED);
+    private RobotContainer m_subsystem;
+
+    public EnableLEDs(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_led);
     }
 
     @Override
     public void initialize() {
-        Robot.lED.setPattern(BlinkinPattern.LARSON_SCANNER);
+        m_subsystem.m_led.setPattern(BlinkinPattern.LARSON_SCANNER);
     }
 
     @Override
@@ -20,19 +24,19 @@ public class EnableLEDs extends CommandBase {
         RobotFeedback rf = RobotFeedback.CLIMBING;
         switch(rf){
             case CLIMBING: {
-                Robot.lED.setPattern(BlinkinPattern.CONFETTI);
+                m_subsystem.m_led.setPattern(BlinkinPattern.CONFETTI);
                 break;
             }
             case HANGING: {
-                Robot.lED.setPattern(BlinkinPattern.FIRE_LARGE);
+                m_subsystem.m_led.setPattern(BlinkinPattern.FIRE_LARGE);
                 break;
             }
             case SHOOOTER_AT_SPEED: {
-                Robot.lED.setPattern(BlinkinPattern.LARSON_SCANNER);
+                m_subsystem.m_led.setPattern(BlinkinPattern.LARSON_SCANNER);
                 break;
             }
             default:{
-                Robot.lED.setPattern(BlinkinPattern.CONFETTI);
+                m_subsystem.m_led.setPattern(BlinkinPattern.CONFETTI);
                 break;
             }
         }
@@ -45,7 +49,7 @@ public class EnableLEDs extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.lED.stop();
+        m_subsystem.m_led.stop();
     }
 
 }

@@ -65,8 +65,6 @@ public class Drive extends SubsystemBase {
         addChild("LeftRear", leftRear);
         addChild("RightFront", rightFront);
         addChild("RightRear", rightRear);
-
-        setDefaultCommand(new TankDrive());
     }
 
     @Override

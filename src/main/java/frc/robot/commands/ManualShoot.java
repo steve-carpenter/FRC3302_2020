@@ -2,14 +2,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class ManualShoot extends CommandBase {
 
-    public ManualShoot() {
+    private RobotContainer m_subsystem;
 
-        addRequirements(Robot.shooter);
-
+    public ManualShoot(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_shooter);
     }
 
     @Override

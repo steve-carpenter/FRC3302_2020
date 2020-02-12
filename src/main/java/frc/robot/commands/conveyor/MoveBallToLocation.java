@@ -1,24 +1,27 @@
 package frc.robot.commands.conveyor;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 /**
  *
  */
 public abstract class MoveBallToLocation extends CommandBase {
 
-    public MoveBallToLocation() {
+    private RobotContainer m_subsystem;
 
-        addRequirements(Robot.conveyor);
-
-
+    public MoveBallToLocation(RobotContainer subsystem) {
+        m_subsystem = subsystem;
+        addRequirements(m_subsystem.m_conveyor);
     }
 
     protected abstract void runConveyor();
     protected abstract void stopConveyor();
     protected abstract boolean isBallPresent();
     protected abstract boolean canIndex();
+    protected RobotContainer getSubSystem(){
+        return m_subsystem;
+    }
 
 
     // Called just before this Command runs the first time

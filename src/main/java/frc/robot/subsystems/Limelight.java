@@ -11,7 +11,9 @@ public class Limelight extends SubsystemBase {
         private double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
         
     public Limelight() {
+        turnOffLimelightLED();
     }
+
 
     @Override
     public void periodic() {
@@ -41,6 +43,14 @@ public class Limelight extends SubsystemBase {
 
     public double getTA(){
         return ta;
+    }
+
+    public void turnOffLimelightLED(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    }
+
+    public void turnOnLimelightLED(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     }
 
 }

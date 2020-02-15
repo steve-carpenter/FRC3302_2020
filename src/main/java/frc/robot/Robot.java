@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    System.out.println("test 1");
     CommandScheduler.getInstance().run();
   }
 
@@ -60,7 +59,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
 
     // schedule the autonomous command (example)
-    System.out.println("test 2");
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }

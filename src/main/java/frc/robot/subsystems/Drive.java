@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.ArcadeDrive;
@@ -75,12 +76,16 @@ public class Drive extends SubsystemBase {
     }
 
     public void arcadeDrive(double moveSpeed, double rotateSpeed) {
+        smartDashboardOutput(moveSpeed, rotateSpeed);
         chassis.arcadeDrive(moveSpeed, rotateSpeed);
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        System.out.println("tank drive " + leftSpeed + "------" + rightSpeed);
+        smartDashboardOutput(leftSpeed, rightSpeed);
         chassis.tankDrive(leftSpeed, rightSpeed);
     }
-
+    private void smartDashboardOutput(double leftSpeed, double rightSpeed) {
+        SmartDashboard.putNumber("leftSpeed", leftSpeed);
+        SmartDashboard.putNumber("rightSpeed", rightSpeed);
+    }
 }

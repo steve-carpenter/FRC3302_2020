@@ -6,16 +6,17 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ColorWheelSpinner extends SubsystemBase {
 
-    private ColorSensorV3 colorSensor;
     private Spark colorWheel;
-    private ColorMatch colorMatcher;
+    private ColorMatch colorMatcher = new ColorMatch();
     private ColorMatchResult colorMatchResult;
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
+    private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
     private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
     private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
@@ -23,13 +24,18 @@ public class ColorWheelSpinner extends SubsystemBase {
     private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
     public ColorWheelSpinner() {
-        colorSensor = new ColorSensorV3(i2cPort);
+        colorMatcher.addColorMatch(kBlueTarget);
+        colorMatcher.addColorMatch(kGreenTarget);
+        colorMatcher.addColorMatch(kRedTarget);
+        colorMatcher.addColorMatch(kYellowTarget);
         colorWheel = new Spark(14);
     }
 
     @Override
     public void periodic() {
-        //colorMatchResult = colorMatcher.matchClosestColor(colorSensor.getColor());
+        Color detectedColor = m_colorSensor.getColor();
+        colorMatchResult = colorMatcher.matchClosestColor(detectedColor);
+        printColorValues();
     }
 
     public ColorMatchResult getColorMatchResult(){
@@ -59,4 +65,13 @@ public class ColorWheelSpinner extends SubsystemBase {
     public boolean isYellow(){
         return colorMatchResult.color == kYellowTarget;
     }
+
+    private void printColorValues(){
+        SmartDashboard.putBoolean("isRed", isRed());
+        SmartDashboard.putBoolean("isBlue", isBlue());
+        SmartDashboard.putBoolean("isGreen", isGreen());
+        SmartDashboard.putBoolean("isYellow", isYellow());
+    }
+
+
 }

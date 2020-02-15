@@ -8,12 +8,6 @@ import frc.robot.RobotMap;
 
 public class JoystickDrive extends CommandBase {
     private RobotContainer m_subsystem;
-    private SendableChooser<DRIVE_TYPE> chooser = new SendableChooser<DRIVE_TYPE>();
-
-    private enum DRIVE_TYPE{
-        ARCADE,
-        TANK
-    }
 
     public JoystickDrive(RobotContainer subsystem){
         m_subsystem = subsystem;
@@ -27,22 +21,19 @@ public class JoystickDrive extends CommandBase {
 
     @Override
     public void initialize() {
-        commandDropDown();
-        System.out.println("Got to joystick drive init");
     }
 
     @Override
     public void execute(){
-        System.out.println("Got to execute joystick drive");
-        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_X_AXIS);
-		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_Y_AXIS);
-        switch(chooser.getSelected()){
+        switch(m_subsystem.m_smartDashboard.getChooserType()){
             case ARCADE:{
-                m_subsystem.m_drive.arcadeDrive(leftSpeed, rightSpeed);
+                m_subsystem.m_drive.arcadeDrive(m_subsystem.m_inputs.getY(), m_subsystem.m_inputs.getZ());
+                break;
             }
             case TANK:
             default:{
-                m_subsystem.m_drive.tankDrive(leftSpeed, rightSpeed);
+                m_subsystem.m_drive.tankDrive(m_subsystem.m_inputs.getY(), m_subsystem.m_inputs.getZRotate());
+                break;
             }
             }
         }
@@ -57,9 +48,5 @@ public class JoystickDrive extends CommandBase {
         return false;
     }
 
-    private void commandDropDown(){
-	    chooser.addObject("Arcade Drive", DRIVE_TYPE.ARCADE);
-	    chooser.addObject("Tank Drive", DRIVE_TYPE.TANK);
-	    SmartDashboard.putData("Drive Mode", chooser);
-    }
+
 }

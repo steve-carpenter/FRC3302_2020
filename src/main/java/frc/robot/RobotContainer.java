@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.EnableLEDs;
 import frc.robot.commands.controls.JoystickDrive;
 import frc.robot.commands.controls.JoystickIntake;
+import frc.robot.commands.limelight.AutoAlignChassis;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorWheelSpinner;
 import frc.robot.subsystems.Conveyor;
@@ -14,10 +15,10 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LowGoalGate;
+import frc.robot.subsystems.SDashboard;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.motors.configurations.ClimberMotorConfiguration;
-import frc.robot.utils.motors.configurations.FlywheelMotorConfiguration;
 
 public class RobotContainer {
 
@@ -32,15 +33,20 @@ public class RobotContainer {
   public final Turret m_turret = new Turret();
   public final Limelight m_limelight = new Limelight();
   public final Conveyor m_conveyor = new Conveyor();
+  public final SDashboard m_smartDashboard = new SDashboard(this);
 
   public RobotContainer() {
     System.out.println("Robot container init");
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
+    CommandScheduler.getInstance().registerSubsystem(m_colorwheel);
+    CommandScheduler.getInstance().registerSubsystem(m_smartDashboard);
+    CommandScheduler.getInstance().registerSubsystem(m_limelight);
 
     m_intake.setDefaultCommand(new JoystickIntake(this, 0.0));
     m_drive.setDefaultCommand(new JoystickDrive(this));
     m_led.setDefaultCommand(new EnableLEDs(this));
+    m_limelight.setDefaultCommand(new AutoAlignChassis(this));
         
         // Configure the button bindings    
         // configureButtonBindings();

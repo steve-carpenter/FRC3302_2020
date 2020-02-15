@@ -17,4 +17,24 @@ public class Inputs {
     public Joystick getOperatorControls() {
         return operatorControls;
     }
+
+    public double getX(){
+        return -1*driverControls.getRawAxis(0);
+    }
+
+    public double getY(){
+        return -1*driverControls.getRawAxis(1);
+    }
+
+    public double getZ(){
+        return driverControls.getRawAxis(2);
+    }
+
+    public double getZRotate(){
+        return -1*driverControls.getRawAxis(3);
+    }
+
+	public double getRawAxis(int i) {
+		return 0;
+	}
 }

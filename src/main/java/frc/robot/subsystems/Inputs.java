@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Inputs {
 
-    Joystick driverControls = new Joystick(0);
-    Joystick operatorControls = new Joystick(1);
+    private final Joystick driverControls = new Joystick(0);
+    private final Joystick operatorControls = new Joystick(1);
 
     public Joystick getDriverControls() {
         return driverControls;

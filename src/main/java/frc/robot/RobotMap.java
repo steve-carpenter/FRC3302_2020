@@ -32,13 +32,13 @@ public class RobotMap {
 
 
     //PWM
-    public static final int SHOOTER_GATE_PWM = 1;
+    public static final int SHOOTER_GATE_PWM = 13;
 
 
 	// Joystick
 	public static final int OI_DRIVER_CONTROLLER = 0;
-	public static final int DRIVER_CONTROLLER_MOVE_AXIS = 1;
-	public static final int DRIVER_CONTROLLER_ROTATE_AXIS = 2;
+	public static final int DRIVER_CONTROLLER_X_AXIS = 1;
+	public static final int DRIVER_CONTROLLER_Y_AXIS = 3;
 
 	// Sensors
     public static final int CONVEYOR_BALL_1_PRESENT = 0;

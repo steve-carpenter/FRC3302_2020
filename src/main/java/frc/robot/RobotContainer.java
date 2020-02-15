@@ -23,7 +23,7 @@ public class RobotContainer {
 
   public final Drive m_drive = new Drive();
   public final Intake m_intake = new Intake();
-  public final Shooter m_shooter = new Shooter(new FlywheelMotorConfiguration());
+  public final Shooter m_shooter = new Shooter();
   public final Climber m_climber = new Climber(new ClimberMotorConfiguration());
   public final ColorWheelSpinner m_colorwheel = new ColorWheelSpinner();
   public final LowGoalGate m_lowGoalGate = new LowGoalGate();
@@ -34,6 +34,7 @@ public class RobotContainer {
   public final Conveyor m_conveyor = new Conveyor();
 
   public RobotContainer() {
+    System.out.println("Robot container init");
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
 

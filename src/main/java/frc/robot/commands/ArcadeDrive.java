@@ -20,8 +20,8 @@ public class ArcadeDrive extends CommandBase {
 
     @Override
     public void execute() {
-        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
-		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
+        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_X_AXIS);
+		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_Y_AXIS);
 		m_subsystem.m_drive.arcadeDrive(leftSpeed, rightSpeed);
     }
 

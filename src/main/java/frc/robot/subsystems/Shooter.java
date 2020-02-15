@@ -13,8 +13,8 @@ import frc.robot.utils.motors.configurations.MotorConfiguration;
 
 public class Shooter extends SubsystemBase {
 
-    private Motor flywheel;
-    private FlywheelMotorConfiguration flywheelMotorConfiguration;
+    private Spark flywheel;
+    //private FlywheelMotorConfiguration flywheelMotorConfiguration;
     private Spark shooterGate;
     private DigitalInput shooterGateOpen;
     private DigitalInput shooterGateClosed;
@@ -22,9 +22,9 @@ public class Shooter extends SubsystemBase {
 
 
     public Shooter(FlywheelMotorConfiguration config) {
-        this.flywheelMotorConfiguration = config;
-        if(config.disabled) return;
-        flywheel = Motor.initMotor(config.motor);
+        // this.flywheelMotorConfiguration = config;
+        // if(config.disabled) return;
+        // flywheel = Motor.initMotor(config.motor);
 
         shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
         shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
@@ -35,6 +35,20 @@ public class Shooter extends SubsystemBase {
         addChild("ShooterGateOpen", shooterGateOpen);
         addChild("ShooterGateClosed", shooterGateClosed);
         addChild("FlywheelEncoder", flywheelEncoder);        
+    }
+
+    public Shooter(){
+        flywheel = new Spark(RobotMap.SHOOTER_FLYWHEEL_SPARK);
+
+        shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
+        shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
+        shooterGateClosed = new DigitalInput(9);
+        shooterGate.setInverted(false);
+     
+        addChild("ShooterGate", shooterGate);
+        addChild("ShooterGateOpen", shooterGateOpen);
+        addChild("ShooterGateClosed", shooterGateClosed);
+        addChild("FlywheelEncoder", flywheelEncoder);    
     }
 
     @Override

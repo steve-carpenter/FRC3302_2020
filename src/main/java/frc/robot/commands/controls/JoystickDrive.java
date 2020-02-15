@@ -19,13 +19,14 @@ public class JoystickDrive extends CommandBase {
 
     @Override
     public void initialize() {
-        
+        System.out.println("Got to joystick drive init");
     }
 
     @Override
     public void execute(){
-        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
-		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
+        System.out.println("Got to execute joystick drive");
+        double leftSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_X_AXIS);
+		double rightSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_Y_AXIS);
         m_subsystem.m_drive.tankDrive(leftSpeed, rightSpeed);
     }
 

@@ -11,15 +11,15 @@ private DigitalInput gateOpen;
 private DigitalInput gateClosed;
 
     public LowGoalGate() {
-gate = new Spark(10);
+gate = new Spark(19);
 addChild("Gate",gate);
 gate.setInverted(false);
         
-gateOpen = new DigitalInput(6);
+gateOpen = new DigitalInput(15);
 addChild("GateOpen",gateOpen);
 
         
-gateClosed = new DigitalInput(7);
+gateClosed = new DigitalInput(16);
 addChild("GateClosed",gateClosed);
 
     }

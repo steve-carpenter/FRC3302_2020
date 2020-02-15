@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -11,7 +12,6 @@ public class CloseShooterGate extends CommandBase {
         m_subsystem = subsystem;
         addRequirements(m_subsystem.m_shooter);
     }
-
     @Override
     public void initialize() {
     }

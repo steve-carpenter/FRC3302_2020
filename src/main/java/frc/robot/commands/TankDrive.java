@@ -30,8 +30,8 @@ public class TankDrive extends CommandBase {
 
     @Override
     public void execute() {
-        double moveSpeed = -m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_MOVE_AXIS);
-		double rotateSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_ROTATE_AXIS);
+        double moveSpeed = -m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_X_AXIS);
+		double rotateSpeed = m_subsystem.m_inputs.getDriverControls().getRawAxis(RobotMap.DRIVER_CONTROLLER_Y_AXIS);
 		m_subsystem.m_drive.tankDrive(moveSpeed, rotateSpeed);
     }
 

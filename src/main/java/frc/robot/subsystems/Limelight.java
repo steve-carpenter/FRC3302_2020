@@ -5,13 +5,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
         
-        private double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-        private double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
-        private double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
-        private double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+        private double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
+        private double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
+        private double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0);
+        private double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
+        private final int DRIVER_VIEW = 0;
+        private final int TARGET_VIEW = 1;
         
     public Limelight() {
-        turnOffLimelightLED();
+        enableDriverPipeline();
     }
 
 
@@ -23,10 +25,10 @@ public class Limelight extends SubsystemBase {
         ty	Vertical Offset From Crosshair To Target (LL1: -20.5 degrees to 20.5 degrees | LL2: -24.85 to 24.85 degrees)
         ta	Target Area (0% of image to 100% of image)
         */
-        tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-        tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
-        ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
-        ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+        tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
+        tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
+        ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0);
+        ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
     }
 
     public double getTV(){
@@ -45,12 +47,12 @@ public class Limelight extends SubsystemBase {
         return ta;
     }
 
-    public void turnOffLimelightLED(){
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    public void enableDriverPipeline(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(DRIVER_VIEW);
     }
 
-    public void turnOnLimelightLED(){
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    public void enableTargetPipeline(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(TARGET_VIEW);
     }
 
 }

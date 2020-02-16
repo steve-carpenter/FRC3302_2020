@@ -22,31 +22,36 @@ public class AutoAlignChassis extends CommandBase {
 
     @Override
     public void initialize() {
-       // SmartDashboard.putNumber("targetArea", m_subsystem.m_limelight.getTA());
-       m_subsystem.m_limelight.turnOnLimelightLED();
+       m_subsystem.m_limelight.enableTargetPipeline();
     }
 
     @Override
     public void execute() {
+        left_command = 0.0;
+        right_command = 0.0;
         SmartDashboard.putNumber("targetArea", m_subsystem.m_limelight.getTA());
-        // double heading_error = -m_subsystem.m_limelight.getTX();
-        // double distance_error = -m_subsystem.m_limelight.getTY();
-        // double steering_adjust = 0.0;
+        double heading_error = -m_subsystem.m_limelight.getTX();
+        double distance_error = -m_subsystem.m_limelight.getTY();
+        double steering_adjust = 0.0;
 
-        // double tx = m_subsystem.m_limelight.getTX();
+        double tx = m_subsystem.m_limelight.getTX();
 
-        // if (tx > 1.0)
-        // {
-        //         steering_adjust = KpAim*heading_error - min_aim_command;
-        // }
-        // else if (tx < 1.0)
-        // {
-        //         steering_adjust = KpAim*heading_error + min_aim_command;
-        // }
+        if (tx > 1.0)
+        {
+                steering_adjust = KpAim*heading_error - min_aim_command;
+        }
+        else if (tx < 1.0)
+        {
+                steering_adjust = KpAim*heading_error + min_aim_command;
+        }
 
-        // double distance_adjust = KpDistance * distance_error;
-        // left_command += steering_adjust + distance_adjust;
-        // right_command -= steering_adjust + distance_adjust;
+        double distance_adjust = KpDistance * distance_error;
+        left_command += steering_adjust + distance_adjust;
+        right_command -= steering_adjust + distance_adjust;
+        SmartDashboard.putNumber("tv", m_subsystem.m_limelight.getTV());
+        SmartDashboard.putNumber("tx", m_subsystem.m_limelight.getTX());
+        SmartDashboard.putNumber("ta", m_subsystem.m_limelight.getTA());
+        SmartDashboard.putNumber("ty", m_subsystem.m_limelight.getTY());
         // m_subsystem.m_drive.tankDrive(left_command, right_command);
     }
 

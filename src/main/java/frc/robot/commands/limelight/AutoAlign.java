@@ -39,7 +39,7 @@ public class AutoAlign extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return m_subsystem.m_limelight.getTA() > DESIRED_TARGET_AREA;
+        return m_subsystem.m_limelight.getTX() < 0.05 && m_subsystem.m_limelight.getTX() > -0.05;
     }
 
     @Override

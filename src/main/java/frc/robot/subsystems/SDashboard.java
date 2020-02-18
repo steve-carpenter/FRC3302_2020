@@ -35,6 +35,10 @@ public class SDashboard extends SubsystemBase {
         return chooser.getSelected();
     }
 
+    public boolean hasColorWheelOffset() {
+        return SmartDashboard.getBoolean("Offset ColorWheel", true);
+    }
+
 
     
 }

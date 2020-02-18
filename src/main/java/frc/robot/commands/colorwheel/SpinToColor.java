@@ -7,6 +7,7 @@ import frc.robot.RobotContainer;
 public class SpinToColor extends CommandBase {
     private RobotContainer m_subsystem;
     private SpinnerColor m_color;
+    private boolean m_isOffset;
 
     public enum SpinnerColor{
         BLUE,
@@ -19,6 +20,7 @@ public class SpinToColor extends CommandBase {
         m_subsystem = subsystem;
         addRequirements(m_subsystem.m_colorwheel);
         color = this.m_color;
+        m_isOffset = subsystem.m_smartDashboard.hasColorWheelOffset();
     }
 
     @Override
@@ -27,6 +29,23 @@ public class SpinToColor extends CommandBase {
 
     @Override
     public void execute() {
+        spinToColor(m_isOffset);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_subsystem.m_colorwheel.stopColorWheel();
+    }
+
+    private void spinToColor(boolean withOffset){
+        if(withOffset){
+            m_color = offsetColor(m_color);
+        }
         switch(m_color){
             case RED:{
                 if(!m_subsystem.m_colorwheel.isRed()){
@@ -65,17 +84,27 @@ public class SpinToColor extends CommandBase {
             }
             System.out.println("Trying to match color: "+ m_color);
         }
-
     }
 
-    @Override
-    public boolean isFinished() {
-        return false;
-    }
+    private SpinnerColor offsetColor(SpinnerColor color){
+        switch(color){
+            case RED:{
+             return SpinnerColor.BLUE;
+                }
+            case GREEN:{
+               return SpinnerColor.YELLOW;
+                }
 
-    @Override
-    public void end(boolean interrupted) {
-        m_subsystem.m_colorwheel.stopColorWheel();
+            case BLUE:{
+                return SpinnerColor.RED;
+                }
+
+            case YELLOW:{
+                return SpinnerColor.GREEN;
+                }
+
+        }
+        return color;
     }
 
 }

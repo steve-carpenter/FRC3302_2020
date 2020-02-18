@@ -2,25 +2,25 @@ package frc.robot.commands.controls;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.commands.limelight.AutoAlign;
 
 public class JoystickIntake extends CommandBase {
 
     private RobotContainer m_subsystem;
-    private double m_power;
 
-    public JoystickIntake(RobotContainer subsystem, double power){
+    public JoystickIntake(RobotContainer subsystem){
         m_subsystem = subsystem;
-        addRequirements(m_subsystem.m_intake);
-        m_power = power;
+        addRequirements(m_subsystem.m_drive, m_subsystem.m_shooter, m_subsystem.m_colorwheel);
     }
 
     @Override
     public void initialize(){
+        // Flywheel Trigger
+        m_subsystem.m_inputs.getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
 
     }
     @Override
     public void execute(){
-        m_subsystem.m_intake.intakeFront(m_power);
     }
 
     @Override

@@ -15,9 +15,6 @@ public class JoystickIntake extends CommandBase {
 
     @Override
     public void initialize(){
-        // Flywheel Trigger
-        m_subsystem.m_inputs.getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
-
     }
     @Override
     public void execute(){

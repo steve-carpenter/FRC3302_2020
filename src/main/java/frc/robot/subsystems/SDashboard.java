@@ -17,6 +17,7 @@ public class SDashboard extends SubsystemBase {
 
     public SDashboard(RobotContainer robotContainer) {
         robotContainer = this.m_subsystem;
+        SmartDashboard.setDefaultBoolean("tuningMode", true);
         commandDropDown();
     }
 

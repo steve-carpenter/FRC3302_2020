@@ -2,10 +2,19 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.RobotContainer;
+import frc.robot.commands.limelight.AutoAlign;
 
 public class Inputs {
 
-    private final Joystick driverControls = new Joystick(0);
+    private RobotContainer m_subsystem;
+
+    public Inputs(RobotContainer robotcontainer) {
+        m_subsystem = robotcontainer;
+        configureButtons();
+	}
+
+	private final Joystick driverControls = new Joystick(0);
     private final Joystick operatorControls = new Joystick(1);
     private final double m_deadband = 0.09;
 
@@ -50,5 +59,10 @@ public class Inputs {
     }
     private double processJoystickAxis(double joystickAxis, int multiply) {
         return Math.abs(joystickAxis) > m_deadband ? joystickAxis * Math.abs(joystickAxis) * multiply : 0;
+    }
+
+    private void configureButtons(){
+        // Flywheel Trigger
+        getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
     }
 }

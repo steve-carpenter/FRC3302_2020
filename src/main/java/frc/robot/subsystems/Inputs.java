@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 import frc.robot.commands.limelight.AutoAlign;
+import frc.robot.utils.TunableBoolean;
 
 public class Inputs {
 
@@ -16,6 +17,7 @@ public class Inputs {
 
 	private final Joystick driverControls = new Joystick(0);
     private final Joystick operatorControls = new Joystick(1);
+    private final TunableBoolean m_manualMode = new TunableBoolean("Manual Operator Control", false);
     private final double m_deadband = 0.09;
 
     public Joystick getDriverControls() {
@@ -62,7 +64,12 @@ public class Inputs {
     }
 
     private void configureButtons(){
-        // Flywheel Trigger
-        getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
+        if(m_manualMode.get()){
+
+        }
+        else{
+            getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
+        }
+      
     }
 }

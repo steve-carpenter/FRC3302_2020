@@ -43,6 +43,6 @@ public class TunableNumber {
      * @return The current value
      */
     public double get() {
-      return m_tuningMode ? SmartDashboard.getNumber(key, defaultValue) : defaultValue;
+      return SmartDashboard.getBoolean("tuningMode", true) ? SmartDashboard.getNumber(key, defaultValue) : defaultValue;
     }
   }

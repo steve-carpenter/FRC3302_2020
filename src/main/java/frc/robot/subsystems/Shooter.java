@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
@@ -27,13 +28,15 @@ public class Shooter extends SubsystemBase {
     private Spark shooterGate;
     private DigitalInput shooterGateOpen;
     private DigitalInput shooterGateClosed;
-    private TunableNumber P = new TunableNumber("Shooter PID (P)");
-    private TunableNumber I = new TunableNumber("Shooter PID (I)");
-    private TunableNumber D = new TunableNumber("Shooter PID (D)");
-    private TunableNumber F = new TunableNumber("Shooter PID (F)");
-    private TunableNumber rampRate = new TunableNumber("Shooter (Ramp Rate)");
-    private TunableNumber maxOutput = new TunableNumber("Shooter (Max Output)");
-    private TunableNumber minOutput = new TunableNumber("Shooter (Min Output)");
+    private TunableNumber P = new TunableNumber("Shooter PID (P)", 0.0012);
+    private TunableNumber I = new TunableNumber("Shooter PID (I)", 0);
+    private TunableNumber D = new TunableNumber("Shooter PID (D)", 0);
+    private TunableNumber F = new TunableNumber("Shooter PID (F)", 0.00019068);
+    private TunableNumber rampRate = new TunableNumber("Shooter (Ramp Rate)", 2);
+    private TunableNumber maxOutput = new TunableNumber("Shooter (Max Output)", 1);
+    private TunableNumber minOutput = new TunableNumber("Shooter (Min Output)", -1);
+    public double kP, kI, kD, kFF, kMaxOutput, kMinOutput, maxRPM;
+    private Double lastRampRate = null; // Force this to be updated once
 
 
 
@@ -60,15 +63,13 @@ public class Shooter extends SubsystemBase {
         shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
         shooterGateClosed = new DigitalInput(9);
         shooterGate.setInverted(false);
-    
-        P.setDefault(0.0012);
-        I.setDefault(0);
-        D.setDefault(0);
-        F.setDefault(0.00019068);
-        rampRate.setDefault(2);
-        maxOutput.setDefault(1);
-        minOutput.setDefault(-1);
-     
+
+        flywheelPIDController.setP(kP);
+        flywheelPIDController.setI(kI);
+        flywheelPIDController.setD(kD);
+        flywheelPIDController.setFF(kFF);
+        flywheelPIDController.setOutputRange(kMinOutput, kMaxOutput);
+         
         addChild("ShooterGate", shooterGate);
         addChild("ShooterGateOpen", shooterGateOpen);
         addChild("ShooterGateClosed", shooterGateClosed);  
@@ -76,7 +77,44 @@ public class Shooter extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
+    double p = P.get();
+    double i = I.get();
+    double d = D.get();
+    double ff = F.get();
+    double max = maxOutput.get();
+    double min = minOutput.get();
+
+    if ((p != kP)) {
+      flywheelPIDController.setP(p);
+      kP = p;
+    }
+    if ((i != kI)) {
+        flywheelPIDController.setI(i);
+      kI = i;
+    }
+    if ((d != kD)) {
+        flywheelPIDController.setD(d);
+      kD = d;
+    }
+    if ((ff != kFF)) {
+        flywheelPIDController.setFF(ff);
+      kFF = ff;
+    }
+    if ((max != kMaxOutput) || (min != kMinOutput)) {
+      flywheelPIDController.setOutputRange(min, max);
+      kMinOutput = min;
+      kMaxOutput = max;
+    }
+
+    double currentRampRate = SmartDashboard.getNumber("Shooter FlyWheel/ramp rate", 2);
+    if (lastRampRate != null && currentRampRate != lastRampRate) {
+      flywheel.setOpenLoopRampRate(currentRampRate);
+      lastRampRate = currentRampRate;
+    }
+    if (SmartDashboard.getBoolean("tuningMode", true)) {
+      SmartDashboard.putNumber("Shooter FlyWheel/speed", getSpeed());
+      SmartDashboard.putNumber("Shooter FlyWheel/applied output", flywheel.getAppliedOutput());
+    }
 
     }
 
@@ -95,5 +133,9 @@ public class Shooter extends SubsystemBase {
     public double distanceToSpeed(double distance){
         return distance * 0.75;
     }
+
+    public double getSpeed() {
+        return flywheelEncoder.getVelocity();
+      }
 
 }

@@ -29,7 +29,7 @@ public class RobotContainer {
   public final ColorWheelSpinner m_colorwheel = new ColorWheelSpinner();
   public final LowGoalGate m_lowGoalGate = new LowGoalGate();
   public final LED m_led = new LED();
-  public final Inputs m_inputs = new Inputs();
+  public final Inputs m_inputs = new Inputs(this);
   public final Turret m_turret = new Turret();
   public final Limelight m_limelight = new Limelight();
   public final Conveyor m_conveyor = new Conveyor();

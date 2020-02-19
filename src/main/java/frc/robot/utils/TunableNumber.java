@@ -14,6 +14,11 @@ public class TunableNumber {
     public TunableNumber(String dashboardKey) {
       this.key = dashboardKey;
     }
+
+    public TunableNumber(String dashboardKey, double defaultValue) {
+        this.key = dashboardKey;
+        this.defaultValue = defaultValue;
+      }
   
     /**
      * Get the default value for the number that has been set

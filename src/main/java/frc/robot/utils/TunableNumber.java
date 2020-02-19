@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TunableNumber {
     private String key;
     private double defaultValue;
-    private final boolean m_tuningMode = SmartDashboard.getBoolean("tuningMode", true);
   
     /**
      * Create a new TunableNumber
@@ -32,7 +31,7 @@ public class TunableNumber {
      */
     public void setDefault(double defaultValue) {
       this.defaultValue = defaultValue;
-      if (m_tuningMode) {
+      if (SmartDashboard.getBoolean("tuningMode", true)) {
         // This makes sure the data is on NetworkTables but will not change it
         SmartDashboard.putNumber(key, SmartDashboard.getNumber(key, defaultValue));
       }

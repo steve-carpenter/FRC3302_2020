@@ -21,7 +21,7 @@ public class FrontIntakeEject extends CommandBase {
 
     @Override
     public void execute() {
-        m_subsystem.m_intake.intakeFront(RobotMap.INTAKE_EJECT_SPEED);
+        m_subsystem.m_intake.run(RobotMap.INTAKE_EJECT_SPEED);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class FrontIntakeEject extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_subsystem.m_intake.intakeFront(0);
+        m_subsystem.m_intake.run(0);
     }
 
 }

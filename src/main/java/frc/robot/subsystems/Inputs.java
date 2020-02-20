@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 import frc.robot.commands.limelight.AutoAlign;
@@ -65,10 +66,16 @@ public class Inputs {
 
     private void configureButtons(){
         if(m_manualMode.get()){
+            getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_intake.collect()));
+            getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
+            getOperatorButton(6).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
+            getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
 
         }
         else{
             getOpTrigger().whenPressed(new AutoAlign(m_subsystem));
+            getOperatorButton(6).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
+            getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
         }
       
     }

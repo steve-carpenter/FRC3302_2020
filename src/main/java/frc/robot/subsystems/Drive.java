@@ -123,15 +123,6 @@ public class Drive extends SubsystemBase {
       public double getRotationsRight() {
         return rightEncoder.getPosition() / afterEncoderReduction;
       }
-    
-      public double getRPSRight() {
-        return rightEncoder.getVelocity() / afterEncoderReduction / 60;
-    
-      }
-    
-      public double getRPSLeft() {
-        return leftEncoder.getVelocity() / afterEncoderReduction / 60;
-      }
 
       public void resetPosition() {
         leftEncoder.setPosition(0);

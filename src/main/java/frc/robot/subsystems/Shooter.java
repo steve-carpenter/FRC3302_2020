@@ -37,23 +37,8 @@ public class Shooter extends SubsystemBase {
     private TunableNumber minOutput = new TunableNumber("Shooter (Min Output)", -1);
     public double kP, kI, kD, kFF, kMaxOutput, kMinOutput, maxRPM;
     private Double lastRampRate = null; // Force this to be updated once
+    private static final double MULTIPLIER = 1.5;
 
-
-
-    public Shooter(FlywheelMotorConfiguration config) {
-        // this.flywheelMotorConfiguration = config;
-        // if(config.disabled) return;
-        // flywheel = Motor.initMotor(config.motor);
-
-        shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
-        shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
-        shooterGateClosed = new DigitalInput(9);
-        shooterGate.setInverted(false);
-     
-        addChild("ShooterGate", shooterGate);
-        addChild("ShooterGateOpen", shooterGateOpen);
-        addChild("ShooterGateClosed", shooterGateClosed);       
-    }
 
     public Shooter(){
         flywheel = new CANSparkMax(RobotMap.SHOOTER_FLYWHEEL_SPARK,MotorType.kBrushless);
@@ -135,7 +120,31 @@ public class Shooter extends SubsystemBase {
     }
 
     public double getSpeed() {
-        return flywheelEncoder.getVelocity();
+      if (flywheel == null) {
+        return 0;
       }
+      return flywheelEncoder.getVelocity();
+    }
 
+      public void stop() {
+        if (flywheel == null) {
+          return;
+        }
+        flywheel.stopMotor();
+      }
+    
+      public void setShooterRPM(double rpm) {
+        if (flywheel == null) {
+          return;
+        }
+        double setpoint = rpm / MULTIPLIER;
+        flywheelPIDController.setReference(setpoint, ControlType.kVelocity);
+      }
+    
+      public void run(double power) {
+        if (flywheel == null) {
+          return;
+        }
+        flywheel.set(power);
+      }
 }

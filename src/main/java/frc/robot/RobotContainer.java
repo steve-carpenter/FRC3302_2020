@@ -43,7 +43,6 @@ public class RobotContainer {
     CommandScheduler.getInstance().registerSubsystem(m_smartDashboard);
     CommandScheduler.getInstance().registerSubsystem(m_limelight);
 
-    m_intake.setDefaultCommand(new JoystickIntake(this));
     m_drive.setDefaultCommand(new JoystickDrive(this));
     m_led.setDefaultCommand(new EnableLEDs(this));
     m_limelight.setDefaultCommand(new AutoAlignChassis(this));

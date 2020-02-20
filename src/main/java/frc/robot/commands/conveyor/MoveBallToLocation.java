@@ -1,5 +1,6 @@
 package frc.robot.commands.conveyor;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
@@ -19,6 +20,7 @@ public abstract class MoveBallToLocation extends CommandBase {
     protected abstract void stopConveyor();
     protected abstract boolean isBallPresent();
     protected abstract boolean canIndex();
+    protected abstract String getConveyorId();
     protected RobotContainer getSubSystem(){
         return m_subsystem;
     }
@@ -45,6 +47,11 @@ public abstract class MoveBallToLocation extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         stopConveyor();
+    }
+
+    public void logging(){
+        SmartDashboard.putBoolean(getConveyorId(), isBallPresent());
+
     }
 
 }

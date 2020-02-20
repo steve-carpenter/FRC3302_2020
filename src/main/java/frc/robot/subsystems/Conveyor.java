@@ -82,5 +82,9 @@ addChild("BallLocation4",ballLocation4);
         return !ballLocation1.get();
     }
 
+    public boolean isConveyorEmpty(){
+        return (!isBall1Present() && !isBall2Present() && !isBall3Present() && !isBall4Present());
+    }
+
 }
 

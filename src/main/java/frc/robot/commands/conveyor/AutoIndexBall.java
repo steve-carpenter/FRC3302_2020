@@ -3,11 +3,11 @@ package frc.robot.commands.conveyor;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 
-public class MoveBall extends SequentialCommandGroup {
+public class AutoIndexBall extends SequentialCommandGroup {
 
   private RobotContainer m_subsystem;
    
-    public MoveBall(RobotContainer subsystem) {
+    public AutoIndexBall(RobotContainer subsystem) {
       m_subsystem = subsystem;
       addCommands(
         new MoveBallToLocation1(m_subsystem), 

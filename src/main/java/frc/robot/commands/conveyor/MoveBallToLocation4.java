@@ -28,8 +28,10 @@ public class MoveBallToLocation4 extends MoveBallToLocation {
 	@Override
 	protected boolean canIndex() {
 		return false;
-	}
+    }
 
-    
-    
+    @Override
+    protected String getConveyorId() {
+        return "LOCATION 4";
+    }    
 }

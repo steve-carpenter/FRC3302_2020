@@ -11,6 +11,7 @@
 
 package frc.robot.commands.conveyor;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
 
 /**
@@ -44,6 +45,9 @@ public class MoveBallToLocation1 extends MoveBallToLocation {
         return ! getSubSystem().m_conveyor.isBall2Present();
     }
 
-    
+    @Override
+    protected String getConveyorId() {
+        return "LOCATION 1";
+    }
     
 }

@@ -28,8 +28,11 @@ public class MoveBallToLocation3 extends MoveBallToLocation {
     @Override
     protected boolean canIndex() {
        return !getSubSystem().m_conveyor.isBall4Present();
-    }
-
+    }   
     
+    @Override
+    protected String getConveyorId() {
+        return "LOCATION 3";
+    }
     
 }

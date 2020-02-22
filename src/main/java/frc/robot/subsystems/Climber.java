@@ -28,7 +28,7 @@ private DigitalInput climberRetracted;
     }
 
     public void extendClimber(){
-        winch.setPower(1);;
+        winch.setPower(1);
     }
 
     public void retractClimber(){

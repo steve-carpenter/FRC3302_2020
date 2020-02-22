@@ -21,6 +21,7 @@ public abstract class MoveBallToLocation extends CommandBase {
     protected abstract boolean isBallPresent();
     protected abstract boolean canIndex();
     protected abstract String getConveyorId();
+    
     protected RobotContainer getSubSystem(){
         return m_subsystem;
     }

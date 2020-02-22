@@ -8,8 +8,9 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands.conveyor;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
@@ -44,6 +45,10 @@ public class MoveBallToLocation2 extends MoveBallToLocation {
         return !getSubSystem().m_conveyor.isBall3Present();
     }
 
-    
+    @Override
+    protected String getConveyorId() {
+        return "LOCATION 2";
+    }
+   
     
 }

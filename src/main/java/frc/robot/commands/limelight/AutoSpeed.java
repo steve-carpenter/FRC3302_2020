@@ -27,7 +27,7 @@ public class AutoSpeed extends CommandBase {
     @Override
     public void execute() {
         measureDistance();
-        m_subsystem.m_shooter.setFlywheelSpeed(m_subsystem.m_shooter.distanceToSpeed(distance));
+        m_subsystem.m_shooter.setSetpoint(m_subsystem.m_shooter.distanceToSpeed(distance));
         // TODO what next?
     }
 

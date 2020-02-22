@@ -1,150 +1,58 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import frc.robot.RobotMap;
 import frc.robot.utils.TunableNumber;
-import frc.robot.utils.motors.Motor;
-import frc.robot.utils.motors.configurations.FlywheelMotorConfiguration;
-import frc.robot.utils.motors.configurations.MotorConfiguration;
 
-public class Shooter extends SubsystemBase {
+public class Shooter extends PIDSubsystem {
 
-    private CANSparkMax flywheel;
-    private CANEncoder flywheelEncoder;
-    private CANPIDController flywheelPIDController;
-    private Spark shooterGate;
-    private DigitalInput shooterGateOpen;
-    private DigitalInput shooterGateClosed;
-    private TunableNumber P = new TunableNumber("Shooter PID (P)", 0.0012);
-    private TunableNumber I = new TunableNumber("Shooter PID (I)", 0);
-    private TunableNumber D = new TunableNumber("Shooter PID (D)", 0);
-    private TunableNumber F = new TunableNumber("Shooter PID (F)", 0.00019068);
-    private TunableNumber rampRate = new TunableNumber("Shooter (Ramp Rate)", 2);
-    private TunableNumber maxOutput = new TunableNumber("Shooter (Max Output)", 1);
-    private TunableNumber minOutput = new TunableNumber("Shooter (Min Output)", -1);
-    public double kP, kI, kD, kFF, kMaxOutput, kMinOutput, maxRPM;
-    private Double lastRampRate = null; // Force this to be updated once
-    private static final double MULTIPLIER = 1.5;
-
-
-    public Shooter(){
-        flywheel = new CANSparkMax(RobotMap.SHOOTER_FLYWHEEL_SPARK,MotorType.kBrushless);
-        flywheelEncoder = flywheel.getEncoder();
-        flywheelPIDController = flywheel.getPIDController();
-        shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
-        shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
-        shooterGateClosed = new DigitalInput(9);
-        shooterGate.setInverted(false);
-
-        flywheelPIDController.setP(kP);
-        flywheelPIDController.setI(kI);
-        flywheelPIDController.setD(kD);
-        flywheelPIDController.setFF(kFF);
-        flywheelPIDController.setOutputRange(kMinOutput, kMaxOutput);
-         
-        addChild("ShooterGate", shooterGate);
-        addChild("ShooterGateOpen", shooterGateOpen);
-        addChild("ShooterGateClosed", shooterGateClosed);  
-    }
-
-    @Override
-    public void periodic() {
-    double p = P.get();
-    double i = I.get();
-    double d = D.get();
-    double ff = F.get();
-    double max = maxOutput.get();
-    double min = minOutput.get();
-
-    if ((p != kP)) {
-      flywheelPIDController.setP(p);
-      kP = p;
-    }
-    if ((i != kI)) {
-        flywheelPIDController.setI(i);
-      kI = i;
-    }
-    if ((d != kD)) {
-        flywheelPIDController.setD(d);
-      kD = d;
-    }
-    if ((ff != kFF)) {
-        flywheelPIDController.setFF(ff);
-      kFF = ff;
-    }
-    if ((max != kMaxOutput) || (min != kMinOutput)) {
-      flywheelPIDController.setOutputRange(min, max);
-      kMinOutput = min;
-      kMaxOutput = max;
-    }
-
-    double currentRampRate = SmartDashboard.getNumber("Shooter FlyWheel/ramp rate", 2);
-    if (lastRampRate != null && currentRampRate != lastRampRate) {
-      flywheel.setOpenLoopRampRate(currentRampRate);
-      lastRampRate = currentRampRate;
-    }
-    if (SmartDashboard.getBoolean("tuningMode", true)) {
-      SmartDashboard.putNumber("Shooter FlyWheel/speed", getSpeed());
-      SmartDashboard.putNumber("Shooter FlyWheel/applied output", flywheel.getAppliedOutput());
-    }
-
-    }
-
-    public boolean isShooterGateOpen(){
-        return shooterGateOpen.get();
-    }
-
-    public boolean isShooterGateClosed(){
-        return shooterGateClosed.get();
-    }
-
-    public void setFlywheelSpeed(double setpoint){
-        flywheelPIDController.setReference(setpoint, ControlType.kVelocity);
-    }
-
-    public double distanceToSpeed(double distance){
-        return distance * 0.75;
-    }
-
-    public double getSpeed() {
-      if (flywheel == null) {
-        return 0;
-      }
-      return flywheelEncoder.getVelocity();
-    }
-
-      public void stop() {
-        if (flywheel == null) {
-          return;
+    private static TunableNumber P = new TunableNumber("Shooter PID (P)", 0.0012);
+    private static TunableNumber I = new TunableNumber("Shooter PID (I)", 0);
+    private static TunableNumber D = new TunableNumber("Shooter PID (D)", 0);
+    private static TunableNumber rampRate = new TunableNumber("Shooter (Ramp Rate)", 2);
+    public static final int kEncoderCPR = 1024;
+    public static final double kEncoderDistancePerPulse =1.0 / (double) kEncoderCPR;
+    public static final double kSVolts = 0.05;
+    public static final double kShooterFreeRPS = 5300;
+    public static final double kVVoltSecondsPerRotation = 12.0 / kShooterFreeRPS;
+    private final Spark m_shooterMotor = new Spark(RobotMap.SHOOTER_FLYWHEEL_SPARK);
+    private Encoder m_shooterEncoder = new Encoder(0,1,false);
+    private final SimpleMotorFeedforward m_shooterFeedforward =new SimpleMotorFeedforward(kSVolts,kVVoltSecondsPerRotation);
+   
+        /**
+         * The shooter subsystem for the robot.
+         */
+        public Shooter() {
+          super(new PIDController(P.get(), I.get(), D.get()));
+          getController().setTolerance(rampRate.get());
+          m_shooterEncoder.setDistancePerPulse(kEncoderDistancePerPulse);
+          setSetpoint(0);
         }
-        flywheel.stopMotor();
-      }
-    
-      public void setShooterRPM(double rpm) {
-        if (flywheel == null) {
-          return;
+      
+        @Override
+        public void useOutput(double output, double setpoint) {
+          m_shooterMotor.setVoltage(output + m_shooterFeedforward.calculate(setpoint));
         }
-        double setpoint = rpm / MULTIPLIER;
-        flywheelPIDController.setReference(setpoint, ControlType.kVelocity);
-      }
-    
-      public void run(double power) {
-        if (flywheel == null) {
-          return;
+      
+        @Override
+        public double getMeasurement() {
+          return m_shooterEncoder.getRate();
         }
-        flywheel.set(power);
+      
+        public boolean atSetpoint() {
+          return m_controller.atSetpoint();
+        }
+
+        public double distanceToSpeed(double distance){
+            // TODO distance formula here
+            return 0.0;
+        }
+
+        public void stop(){
+            setSetpoint(0);
+        }
       }
-}

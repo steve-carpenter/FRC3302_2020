@@ -36,7 +36,6 @@ public class RobotContainer {
   public final SDashboard m_smartDashboard = new SDashboard(this);
 
   public RobotContainer() {
-    System.out.println("Robot container init");
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
     CommandScheduler.getInstance().registerSubsystem(m_colorwheel);

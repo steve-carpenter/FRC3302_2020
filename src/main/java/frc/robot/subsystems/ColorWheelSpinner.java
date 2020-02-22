@@ -11,13 +11,9 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.colorwheel.SpinToColor.SpinnerColor;
 
 public class ColorWheelSpinner extends SubsystemBase {
 
@@ -37,7 +33,6 @@ public class ColorWheelSpinner extends SubsystemBase {
     private final double kWheelSize = 4;
     private static final AlternateEncoderType kAltEncType = AlternateEncoderType.kQuadrature;
     private static final int kCPR = 8192;
-    private SendableChooser<Command> chooser = new SendableChooser<Command>();
 
     public ColorWheelSpinner() {
         colorMatcher.addColorMatch(kBlueTarget);
@@ -67,10 +62,6 @@ public class ColorWheelSpinner extends SubsystemBase {
 
     public void stopColorWheel(){
         m_colorWheel.set(0);
-    }
-
-    public void spinXTimes(int x){
-
     }
 
     public boolean isBlue(){
@@ -115,10 +106,5 @@ public class ColorWheelSpinner extends SubsystemBase {
     private double spinsToRotations(double spins){
         return (spins * kColorWheelCircumference) / kWheelSize;
     }
-
-    private void smartDashboardSetup(){
-
-    }
-
 
 }

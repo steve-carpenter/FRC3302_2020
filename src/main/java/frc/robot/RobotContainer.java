@@ -25,7 +25,7 @@ public class RobotContainer {
   public final Drive m_drive = new Drive();
   public final Intake m_intake = new Intake();
   public final Shooter m_shooter = new Shooter();
-  public final Climber m_climber = new Climber(new ClimberMotorConfiguration());
+  public final Climber m_climber = new Climber();
   public final ColorWheelSpinner m_colorwheel = new ColorWheelSpinner();
   public final LowGoalGate m_lowGoalGate = new LowGoalGate();
   public final LED m_led = new LED();
@@ -38,10 +38,17 @@ public class RobotContainer {
   public RobotContainer() {
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
+    CommandScheduler.getInstance().registerSubsystem(m_shooter);
+    CommandScheduler.getInstance().registerSubsystem(m_climber);
     CommandScheduler.getInstance().registerSubsystem(m_colorwheel);
-    CommandScheduler.getInstance().registerSubsystem(m_smartDashboard);
-    CommandScheduler.getInstance().registerSubsystem(m_limelight);
 
+    CommandScheduler.getInstance().registerSubsystem(m_led);
+    CommandScheduler.getInstance().registerSubsystem(m_turret);
+    CommandScheduler.getInstance().registerSubsystem(m_limelight);
+    CommandScheduler.getInstance().registerSubsystem(m_conveyor);
+
+    CommandScheduler.getInstance().registerSubsystem(m_smartDashboard);
+    
     m_drive.setDefaultCommand(new JoystickDrive(this));
     m_led.setDefaultCommand(new EnableLEDs(this));
     m_limelight.setDefaultCommand(new AutoAlignChassis(this));

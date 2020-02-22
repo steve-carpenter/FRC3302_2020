@@ -90,6 +90,7 @@ public class Inputs {
             getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
             getOperatorButton(6).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
             getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
+            
 
         }
         else{

@@ -28,7 +28,6 @@ public class Shooter extends SubsystemBase {
     private CANPIDController flywheelPIDController;
     private static final AlternateEncoderType kAltEncType = AlternateEncoderType.kQuadrature;
     private static final int kCPR = 8192;
-    m_colorWheelPidController.setFeedbackDevice(m_colorWheel.getAlternateEncoder(kAltEncType, kCPR));
     private Spark shooterGate;
     private DigitalInput shooterGateOpen;
     private DigitalInput shooterGateClosed;
@@ -56,6 +55,7 @@ public class Shooter extends SubsystemBase {
         flywheelPIDController.setD(kD);
         flywheelPIDController.setFF(kFF);
         flywheelPIDController.setOutputRange(kMinOutput, kMaxOutput);
+        flywheelPIDController.setFeedbackDevice(flywheel.getAlternateEncoder(kAltEncType, kCPR));
          
         addChild("ShooterGate", shooterGate);
         addChild("ShooterGateOpen", shooterGateOpen);

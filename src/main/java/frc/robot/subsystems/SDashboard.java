@@ -28,7 +28,7 @@ public class SDashboard extends SubsystemBase {
 
     @Override
     public void periodic() {
-        super.periodic();
+        
     }
 
     private void commandDropDown(){

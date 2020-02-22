@@ -23,15 +23,14 @@ public class SpinFlywheel extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // shooterFlyWheel.run(setpoint.get());
-    m_subsystem.m_shooter.setSetpoint(setpoint.get());
+    m_subsystem.m_shooter.setFlywheelSpeed(setpoint.get());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (SmartDashboard.getBoolean("tuningMode", true)) {
-      m_subsystem.m_shooter.setSetpoint(setpoint.get());
+      m_subsystem.m_shooter.setFlywheelSpeed(setpoint.get());
     }
   }
 

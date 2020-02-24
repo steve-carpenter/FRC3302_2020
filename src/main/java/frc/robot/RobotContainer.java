@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.controls.JoystickDrive;
-import frc.robot.commands.controls.JoystickIntake;
 import frc.robot.commands.leds.EnableLEDs;
 import frc.robot.commands.limelight.AutoAlignChassis;
 import frc.robot.subsystems.Climber;
@@ -18,7 +17,6 @@ import frc.robot.subsystems.LowGoalGate;
 import frc.robot.subsystems.SDashboard;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
-import frc.robot.utils.motors.configurations.ClimberMotorConfiguration;
 
 public class RobotContainer {
 

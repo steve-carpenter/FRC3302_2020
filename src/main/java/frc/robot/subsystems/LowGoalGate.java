@@ -7,20 +7,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class LowGoalGate extends SubsystemBase {
 
 private Spark gate;
-private DigitalInput gateOpen;
-private DigitalInput gateClosed;
 
     public LowGoalGate() {
 gate = new Spark(19);
 addChild("Gate",gate);
 gate.setInverted(false);
-        
-gateOpen = new DigitalInput(15);
-addChild("GateOpen",gateOpen);
-
-        
-gateClosed = new DigitalInput(16);
-addChild("GateClosed",gateClosed);
 
     }
 
@@ -39,14 +30,6 @@ addChild("GateClosed",gateClosed);
 
     public void stopGate(){
         gate.set(0);
-    }
-
-    public boolean isGateOpen(){
-        return gateOpen.get();
-    }
-
-    public boolean isGateClosed(){
-        return gateClosed.get();
     }
 
 }

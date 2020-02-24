@@ -13,6 +13,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -143,5 +144,10 @@ public class Drive extends SubsystemBase {
 
       public double getDistanceLeft() {
         return wheelDiameter * Math.PI * getRotationsLeft();
+      }
+
+      public void driveDistance(double inches){
+        leftPidController.setReference(inches, ControlType.kSmartMotion);
+        rightPidController.setReference(inches, ControlType.kSmartMotion);
       }
 }

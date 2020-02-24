@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.lowGoalGate;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -24,7 +24,7 @@ public class CloseLowGoalGate extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return m_subsystem.m_lowGoalGate.isGateClosed();
+        return false;
     }
 
     @Override

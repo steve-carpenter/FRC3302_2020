@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.utils.TunableNumber;
 import frc.robot.utils.motors.Motor;
-import frc.robot.utils.motors.configurations.FlywheelMotorConfiguration;
 import frc.robot.utils.motors.configurations.MotorConfiguration;
 
 public class Shooter extends SubsystemBase {
@@ -46,8 +45,6 @@ public class Shooter extends SubsystemBase {
     public Shooter(){
         flywheelPIDController = flywheel.getPIDController();
         shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
-        shooterGateOpen = new DigitalInput(RobotMap.SHOOTER_GATE_PROX);
-        shooterGateClosed = new DigitalInput(9);
         shooterGate.setInverted(false);
 
         flywheelPIDController.setP(kP);
@@ -137,5 +134,17 @@ public class Shooter extends SubsystemBase {
           return;
         }
         flywheel.set(power);
+      }
+
+      public void openShooterGate(){
+        shooterGate.set(0.5);
+      }
+
+      public void closeShooterGate(){
+        shooterGate.set(-0.5);
+      }
+
+      public void stopShooterGate(){
+        shooterGate.set(0);
       }
 }

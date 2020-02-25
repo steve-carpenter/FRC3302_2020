@@ -25,7 +25,7 @@ public class JoystickDrive extends CommandBase {
 
     @Override
     public void execute(){
-        switch(m_subsystem.m_smartDashboard.getChooserType()){
+        switch(m_subsystem.m_drive.getChooserType()){
             case ARCADE:{
                 m_subsystem.m_drive.arcadeDrive(m_subsystem.m_inputs.getY(), m_subsystem.m_inputs.getZ());
                 break;

@@ -43,6 +43,7 @@ public class Shooter extends SubsystemBase {
 
 
     public Shooter(){
+        flywheel = new CANSparkMax(RobotMap.SHOOTER_FLYWHEEL_SPARK, MotorType.kBrushless);
         flywheelPIDController = flywheel.getPIDController();
         shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
         shooterGate.setInverted(false);

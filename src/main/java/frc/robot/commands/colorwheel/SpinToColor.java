@@ -3,9 +3,10 @@ package frc.robot.commands.colorwheel;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.ColorWheelSpinner;
 
 public class SpinToColor extends CommandBase {
-    private RobotContainer m_subsystem;
+    private ColorWheelSpinner m_subsystem;
     private SpinnerColor m_color;
     private boolean m_isOffset;
 
@@ -16,11 +17,11 @@ public class SpinToColor extends CommandBase {
         YELLOW
     }
 
-    public SpinToColor(RobotContainer subsystem, SpinnerColor color) {
+    public SpinToColor(ColorWheelSpinner subsystem, SpinnerColor color) {
         m_subsystem = subsystem;
-        addRequirements(m_subsystem.m_colorwheel);
+        addRequirements(m_subsystem);
         color = this.m_color;
-        m_isOffset = subsystem.m_smartDashboard.hasColorWheelOffset();
+        m_isOffset = m_subsystem.hasColorWheelOffset();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class SpinToColor extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_subsystem.m_colorwheel.stopColorWheel();
+        m_subsystem.stopColorWheel();
     }
 
     private void spinToColor(boolean withOffset){
@@ -48,16 +49,16 @@ public class SpinToColor extends CommandBase {
         }
         switch(m_color){
             case RED:{
-                if(!m_subsystem.m_colorwheel.isRed()){
-                    m_subsystem.m_colorwheel.spinColorWheel();
+                if(!m_subsystem.isRed()){
+                    m_subsystem.spinColorWheel();
                 }
                 else{
                     end(false);
                 }
             }
             case GREEN:{
-                if(!m_subsystem.m_colorwheel.isGreen()){
-                    m_subsystem.m_colorwheel.spinColorWheel();
+                if(!m_subsystem.isGreen()){
+                    m_subsystem.spinColorWheel();
                 }
                 else{
                     end(false);
@@ -65,8 +66,8 @@ public class SpinToColor extends CommandBase {
 
             }
             case BLUE:{
-                if(!m_subsystem.m_colorwheel.isBlue()){
-                    m_subsystem.m_colorwheel.spinColorWheel();
+                if(!m_subsystem.isBlue()){
+                    m_subsystem.spinColorWheel();
                 }
                 else{
                     end(false);
@@ -74,8 +75,8 @@ public class SpinToColor extends CommandBase {
 
             }
             case YELLOW:{
-                if(!m_subsystem.m_colorwheel.isYellow()){
-                    m_subsystem.m_colorwheel.spinColorWheel();
+                if(!m_subsystem.isYellow()){
+                    m_subsystem.spinColorWheel();
                 }
                 else{
                     end(false);

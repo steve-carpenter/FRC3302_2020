@@ -11,9 +11,13 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.colorwheel.SpinToColor;
+import frc.robot.commands.colorwheel.SpinToColor.SpinnerColor;
 
 public class ColorWheelSpinner extends SubsystemBase {
 
@@ -33,6 +37,7 @@ public class ColorWheelSpinner extends SubsystemBase {
     private final double kWheelSize = 4;
     private static final AlternateEncoderType kAltEncType = AlternateEncoderType.kQuadrature;
     private static final int kCPR = 8192;
+    private SendableChooser<Command> colorSelection = new SendableChooser<Command>();
 
     public ColorWheelSpinner() {
         colorMatcher.addColorMatch(kBlueTarget);
@@ -43,6 +48,7 @@ public class ColorWheelSpinner extends SubsystemBase {
         m_colorWheelEncoder = m_colorWheel.getEncoder();
         m_colorWheelPidController = m_colorWheel.getPIDController();
         m_colorWheelPidController.setFeedbackDevice(m_colorWheel.getAlternateEncoder(kAltEncType, kCPR));
+        smartDashboardSetup();
     }
 
     @Override
@@ -105,6 +111,18 @@ public class ColorWheelSpinner extends SubsystemBase {
 
     private double spinsToRotations(double spins){
         return (spins * kColorWheelCircumference) / kWheelSize;
+    }
+
+    public boolean hasColorWheelOffset() {
+        return SmartDashboard.getBoolean("Offset ColorWheel", true);
+    }
+
+    private void smartDashboardSetup(){
+        colorSelection.addOption("Red", new SpinToColor(this, SpinnerColor.RED));
+        colorSelection.addOption("Blue", new SpinToColor(this, SpinnerColor.BLUE));
+        colorSelection.addOption("Green", new SpinToColor(this, SpinnerColor.GREEN));
+        colorSelection.addOption("Yellow", new SpinToColor(this, SpinnerColor.YELLOW));
+        SmartDashboard.putData("Color Selection", colorSelection);
     }
 
 }

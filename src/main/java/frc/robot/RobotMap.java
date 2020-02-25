@@ -49,6 +49,8 @@ public class RobotMap {
     public static final int CLIMBER_EXTENDED_PROX = 5;
     public static final int CLIMBER_RETRACTED_PROX = 6;
     public static final int LOW_GOAL_GATE_PROX = 7;
+    public static final int TURRENT_LEFT_MAX = 8;
+    public static final int TURRET_RIGHT_MAX = 9;
 
     // Speed
     public static final int INTAKE_COLLECT_SPEED = 100;

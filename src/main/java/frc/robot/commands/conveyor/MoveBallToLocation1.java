@@ -11,7 +11,6 @@
 
 package frc.robot.commands.conveyor;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
 
 /**

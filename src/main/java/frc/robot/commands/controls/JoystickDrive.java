@@ -1,10 +1,7 @@
 package frc.robot.commands.controls;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.RobotMap;
 
 public class JoystickDrive extends CommandBase {
     private RobotContainer m_subsystem;

@@ -29,7 +29,7 @@ public class SpinFlywheel extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (SmartDashboard.getBoolean("tuningMode", true)) {
+    if (m_subsystem.m_tuningSelection.getSelected()) {
       m_subsystem.m_shooter.setFlywheelSpeed(setpoint.get());
     }
   }

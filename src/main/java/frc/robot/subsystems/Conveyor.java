@@ -86,5 +86,15 @@ addChild("BallLocation4",ballLocation4);
         return (!isBall1Present() && !isBall2Present() && !isBall3Present() && !isBall4Present());
     }
 
+    public void runConveyors(){
+        runTopConveyor();
+        runBottomConveyor();
+    }
+
+    public void stopConveyors(){
+        stopTopConveyor();
+        stopBottomConveyor();
+    }
+
 }
 

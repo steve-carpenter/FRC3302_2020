@@ -82,12 +82,18 @@ public class Inputs {
 
     private void configureButtons(){
         if(m_manualMode.get()){
-            getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_intake.collect()));
-            getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
-            getOperatorButton(6).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
-            getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
-            
-
+            getOpTrigger().whenPressed(new AutoSpeed(m_subsystem));
+            getOperatorButton(9).whenActive(new InstantCommand(() -> m_subsystem.m_intake.collect()));
+            getOperatorButton(10).whenActive(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
+            getOperatorButton(7).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
+            getOperatorButton(8).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
+            getOperatorButton(9).whenActive(new InstantCommand(() -> m_subsystem.m_conveyor.runConveyors()));
+            getOperatorButton(2).whenActive(new InstantCommand(() -> m_subsystem.m_conveyor.stopConveyors()));
+            getOperatorButton(11).whenActive(new InstantCommand(() -> m_subsystem.m_shooter.openShooterGate()));
+            getOperatorButton(12).whenActive(new InstantCommand(() -> m_subsystem.m_shooter.closeShooterGate()));
+            getOperatorButton(3).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.openGate()));
+            getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.closeGate()));
+            m_subsystem.m_turret.moveTurret(getOperatorControls().getX());
         }
         else{
             getOpTrigger().whenPressed(new AutoSpeed(m_subsystem));

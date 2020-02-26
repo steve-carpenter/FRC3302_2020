@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -31,8 +32,11 @@ public class RobotContainer {
   public final Limelight m_limelight = new Limelight();
   public final Conveyor m_conveyor = new Conveyor();
   public final Inputs m_inputs = new Inputs(this);
+  public SendableChooser<Boolean> m_tuningSelection = new SendableChooser<>();
 
   public RobotContainer() {
+    addTuningMode();
+
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
     CommandScheduler.getInstance().registerSubsystem(m_shooter);
@@ -47,7 +51,6 @@ public class RobotContainer {
     m_drive.setDefaultCommand(new JoystickDrive(this));
     m_led.setDefaultCommand(new EnableLEDs(this));
     m_limelight.setDefaultCommand(new AutoAlignChassis(this));
-    SmartDashboard.setDefaultBoolean("tuningMode", true);
         
         // Configure the button bindings    
         // configureButtonBindings();
@@ -56,6 +59,11 @@ public class RobotContainer {
       public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return null;
+      }
+
+      private void addTuningMode(){
+        m_tuningSelection.addOption("Enabled", true);
+        m_tuningSelection.addOption("Disabled", false);
       }
     
 }

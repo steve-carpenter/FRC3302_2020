@@ -20,8 +20,10 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LEFT_BACK_SPARK = 2;
 	public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 3;
     public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 4;
-    public static final int CONVEYOR_BOTTOM_ROLLER_SPARK = 0;
+    public static final int CONVEYOR_BOTTOM_ROLLER_SPARK = 15;
+    public static final int CONVEYOR_BOTTOM_ROLLER_SPARK2 = 13;
     public static final int CONVEYOR_TOP_ROLLER_SPARK = 5;
+    public static final int CONVEYOR_TOP_ROLLER_SPARK2 = 14;
     public static final int INTAKE_FRONT_ROLLER_SPARK = 6;
     public static final int INTAKE_REAR_ROLLER_SPARK = 7;
     public static final int SHOOTER_FLYWHEEL_SPARK = 8;
@@ -29,10 +31,12 @@ public class RobotMap {
     public static final int CLIMBER_WINCH_SPARK = 10;
     public static final int LOW_GOAL_GATE_SPARK = 11;
     public static final int BLINKIN_SPARK = 12;
+    public static final int COLORWHEEL_SPARK = 0;
+
 
 
     //PWM
-    public static final int SHOOTER_GATE_PWM = 13;
+    public static final int SHOOTER_GATE_PWM = 16;
 
 
 	// Joystick

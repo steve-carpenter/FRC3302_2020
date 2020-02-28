@@ -9,7 +9,7 @@ import frc.robot.RobotMap;
 
 public class Conveyor extends SubsystemBase {
 
-private Spark bottomConveyor;
+// private Spark bottomConveyor;
 private Spark topConveyor;
 private DigitalInput ballLocation1;
 private DigitalInput ballLocation2;
@@ -18,17 +18,17 @@ private DigitalInput ballLocation4;
 
 
     public Conveyor() {
-bottomConveyor = new Spark(RobotMap.CONVEYOR_BOTTOM_ROLLER_SPARK);
+// bottomConveyor = new Spark(RobotMap.CONVEYOR_BOTTOM_ROLLER_SPARK);
 topConveyor = new Spark(RobotMap.CONVEYOR_TOP_ROLLER_SPARK);
 ballLocation1 = new DigitalInput(RobotMap.CONVEYOR_BALL_1_PRESENT);
 ballLocation2 = new DigitalInput(RobotMap.CONVEYOR_BALL_2_PRESENT);
 ballLocation3 = new DigitalInput(RobotMap.CONVEYOR_BALL_3_PRESENT);
 ballLocation4 = new DigitalInput(RobotMap.CONVEYOR_BALL_4_PRESENT);
 
-bottomConveyor.setInverted(false);
+// bottomConveyor.setInverted(false);
 topConveyor.setInverted(false);       
 
-addChild("BottomConveyor",bottomConveyor);
+// addChild("BottomConveyor",bottomConveyor);
 addChild("TopConveyor",topConveyor);
 addChild("BallLocation1",ballLocation1);
 addChild("BallLocation2",ballLocation2);
@@ -50,22 +50,22 @@ addChild("BallLocation4",ballLocation4);
         topConveyor(0);
     }
 
-    public void stopBottomConveyor(){
-        bottomConveyor(0);
-    }
+    // public void stopBottomConveyor(){
+    //     bottomConveyor(0);
+    // }
 
-    public void runBottomConveyor(){
-        bottomConveyor(1);
-    }
+    // public void runBottomConveyor(){
+    //     bottomConveyor(1);
+    // }
 
     public void topConveyor(int speed){
         topConveyor.set(speed);
     }
 
-    public void bottomConveyor(int speed){
-        bottomConveyor.set(speed);
+    // public void bottomConveyor(int speed){
+    //     bottomConveyor.set(speed);
 
-    }
+    // }
 
     public boolean isBall1Present(){
         return !ballLocation1.get();
@@ -89,12 +89,12 @@ addChild("BallLocation4",ballLocation4);
 
     public void runConveyors(){
         runTopConveyor();
-        runBottomConveyor();
+        // runBottomConveyor();
     }
 
     public void stopConveyors(){
         stopTopConveyor();
-        stopBottomConveyor();
+        // stopBottomConveyor();
     }
 
 }

@@ -15,8 +15,8 @@ public class Turret extends SubsystemBase {
     private TurretSearchState m_turretSearchState;
 
     public Turret() {
-        // turret = new Spark(RobotMap.SHOOTER_TURNTABLE_SPARK);
-        panLeftStop = new DigitalInput(RobotMap.TURRENT_LEFT_MAX);
+        turret = new Spark(RobotMap.TURRET_SPARK);
+        panLeftStop = new DigitalInput(RobotMap.TURRET_LEFT_MAX);
         panRightStop = new DigitalInput(RobotMap.TURRET_RIGHT_MAX);
         turret.setInverted(false);
         m_turretSearchState = TurretSearchState.PAN_RIGHT;

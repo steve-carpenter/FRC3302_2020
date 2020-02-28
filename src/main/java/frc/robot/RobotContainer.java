@@ -37,18 +37,18 @@ public class RobotContainer {
 
     CommandScheduler.getInstance().registerSubsystem(m_drive);
     CommandScheduler.getInstance().registerSubsystem(m_intake);
-    CommandScheduler.getInstance().registerSubsystem(m_shooter);
-    CommandScheduler.getInstance().registerSubsystem(m_climber);
-    CommandScheduler.getInstance().registerSubsystem(m_colorwheel);
+    //CommandScheduler.getInstance().registerSubsystem(m_shooter);
+    //CommandScheduler.getInstance().registerSubsystem(m_climber);
+    //CommandScheduler.getInstance().registerSubsystem(m_colorwheel);
 
-    CommandScheduler.getInstance().registerSubsystem(m_led);
+    //CommandScheduler.getInstance().registerSubsystem(m_led);
     CommandScheduler.getInstance().registerSubsystem(m_turret);
-    CommandScheduler.getInstance().registerSubsystem(m_limelight);
-    CommandScheduler.getInstance().registerSubsystem(m_conveyor);
+    //CommandScheduler.getInstance().registerSubsystem(m_limelight);
+    //CommandScheduler.getInstance().registerSubsystem(m_conveyor);
     
     m_drive.setDefaultCommand(new JoystickDrive(this));
-    m_led.setDefaultCommand(new EnableLEDs(this));
-    m_limelight.setDefaultCommand(new AutoAlignChassis(this));
+   // m_led.setDefaultCommand(new EnableLEDs(this));
+    //m_limelight.setDefaultCommand(new AutoAlignChassis(this));
         
         // Configure the button bindings    
         // configureButtonBindings();

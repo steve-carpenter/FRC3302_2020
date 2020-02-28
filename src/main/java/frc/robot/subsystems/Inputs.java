@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
+import frc.robot.commands.intake.AutoIntake;
+import frc.robot.commands.intake.AutoUnCollect;
 import frc.robot.commands.limelight.AutoSpeed;
 import frc.robot.utils.TunableBoolean;
 
@@ -78,9 +80,11 @@ public class Inputs {
 
     private void configureButtons(){
         if(m_manualMode.get()){
-            getOperatorButton(1).whenPressed(new AutoSpeed(m_subsystem));
-            getOperatorButton(11).whenActive(new InstantCommand(() -> m_subsystem.m_intake.collect()));
-            getOperatorButton(12).whenActive(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
+            //getOperatorButton(1).whenPressed(new AutoSpeed(m_subsystem));
+            //getOperatorButton(11).whenHeld(new InstantCommand(() -> m_subsystem.m_intake.collect()));
+            getOperatorButton(11).whenHeld(new AutoIntake(m_subsystem));
+            //getOperatorButton(12).whenHeld(new InstantCommand(() -> m_subsystem.m_intake.uncollect()));
+            getOperatorButton(12).whenHeld(new AutoUnCollect(m_subsystem));
             getOperatorButton(7).whenActive(new InstantCommand(() -> m_subsystem.m_climber.extendClimber()));
             getOperatorButton(8).whenActive(new InstantCommand(() -> m_subsystem.m_climber.retractClimber()));
             getOperatorButton(6).whenActive(new InstantCommand(() -> m_subsystem.m_conveyor.runConveyors()));

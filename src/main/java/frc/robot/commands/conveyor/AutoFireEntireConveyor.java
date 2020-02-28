@@ -21,7 +21,7 @@ public class AutoFireEntireConveyor extends CommandBase{
     @Override
     public void execute() {
         m_subsystem.m_conveyor.runTopConveyor();
-        m_subsystem.m_conveyor.runBottomConveyor();
+        // m_subsystem.m_conveyor.runBottomConveyor();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,7 +34,7 @@ public class AutoFireEntireConveyor extends CommandBase{
     @Override
     public void end(boolean interrupted) {
         m_subsystem.m_conveyor.stopTopConveyor();
-        m_subsystem.m_conveyor.stopBottomConveyor();
+        // m_subsystem.m_conveyor.stopBottomConveyor();
     }
         
 }

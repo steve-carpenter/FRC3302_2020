@@ -16,9 +16,9 @@ package frc.robot;
 public class RobotMap {
 
 	// Spark Controllers
-    public static final int TURRET_SPARK = 0;
+    public static final int TURRET_SPARK = 4;
     public static final int CLIMBER_WINCH_SPARK = 1; 
-    public static final int CONVEYOR_TOP_ROLLER_SPARK = 4;
+    public static final int CONVEYOR_TOP_ROLLER_SPARK = 0;
     public static final int CONVEYOR_BOTTOM_ROLLER_SPARK = 3;
 	public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 6;
     public static final int DRIVETRAIN_LEFT_BACK_SPARK = 5;
@@ -26,7 +26,7 @@ public class RobotMap {
     public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 9;
     public static final int INTAKE_FRONT_ROLLER_SPARK = 3; 
     public static final int SHOOTER_FLYWHEEL_SPARK = 8;
-    // public static final int BLINKIN_SPARK = 2;
+     // public static final int BLINKIN_SPARK = 2;
     public static final int COLORWHEEL_SPARK = 7;
 
 
@@ -44,7 +44,7 @@ public class RobotMap {
     public static final int CLIMBER_EXTENDED_PROX = 5;
     public static final int CLIMBER_RETRACTED_PROX = 6;
     public static final int LOW_GOAL_GATE_PROX = 7;
-    public static final int TURRENT_LEFT_MAX = 8;
+    public static final int TURRET_LEFT_MAX = 8;
     public static final int TURRET_RIGHT_MAX = 9;
 
     // Speed

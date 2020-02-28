@@ -10,13 +10,13 @@ public class MoveBallToLocation3 extends MoveBallToLocation {
 
     @Override
     protected void runConveyor() {
-        getSubSystem().m_conveyor.runBottomConveyor();
+        // getSubSystem().m_conveyor.runBottomConveyor();
 
     }
 
     @Override
     protected void stopConveyor() {
-        getSubSystem().m_conveyor.stopBottomConveyor();
+        // getSubSystem().m_conveyor.stopBottomConveyor();
 
     }
 

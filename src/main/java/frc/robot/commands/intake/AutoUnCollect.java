@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 
-public class AutoIntake extends CommandBase {
+public class AutoUnCollect extends CommandBase {
 
     private RobotContainer m_subsystem;
 
-    public AutoIntake(RobotContainer subsystem) {
+    public AutoUnCollect(RobotContainer subsystem) {
         m_subsystem = subsystem;
         addRequirements(m_subsystem.m_intake);
 
@@ -21,7 +21,7 @@ public class AutoIntake extends CommandBase {
 
     @Override
     public void execute() {
-        m_subsystem.m_intake.collect();
+        m_subsystem.m_intake.uncollect();
     }
 
     @Override

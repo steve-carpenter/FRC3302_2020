@@ -7,7 +7,7 @@ import frc.robot.RobotMap;
 public class Intake extends SubsystemBase {
 
 private Spark frontIntake;
-private Spark rearIntake;
+// private Spark rearIntake;
 
 
     public Intake() {
@@ -15,10 +15,10 @@ frontIntake = new Spark(RobotMap.INTAKE_FRONT_ROLLER_SPARK);
 // rearIntake = new Spark(RobotMap.INTAKE_REAR_ROLLER_SPARK);
 
 frontIntake.setInverted(false);
-rearIntake.setInverted(false);
+// rearIntake.setInverted(false);
 
 addChild("FrontIntake",frontIntake);
-addChild("RearIntake",rearIntake);
+// addChild("RearIntake",rearIntake);
 
     }
 
@@ -36,7 +36,7 @@ addChild("RearIntake",rearIntake);
     
     public void run(double speed){
         frontIntake.set(speed);
-        rearIntake.set(speed);
+        // rearIntake.set(speed);
     }
 
 }

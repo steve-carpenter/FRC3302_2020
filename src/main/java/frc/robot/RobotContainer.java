@@ -15,7 +15,6 @@ import frc.robot.subsystems.Inputs;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.LowGoalGate;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 
@@ -26,7 +25,6 @@ public class RobotContainer {
   public final Shooter m_shooter = new Shooter();
   public final Climber m_climber = new Climber();
   public final ColorWheelSpinner m_colorwheel = new ColorWheelSpinner();
-  public final LowGoalGate m_lowGoalGate = new LowGoalGate();
   public final LED m_led = new LED();
   public final Turret m_turret = new Turret();
   public final Limelight m_limelight = new Limelight();

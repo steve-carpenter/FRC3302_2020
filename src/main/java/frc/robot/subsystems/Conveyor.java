@@ -10,9 +10,7 @@ import frc.robot.RobotMap;
 public class Conveyor extends SubsystemBase {
 
 private Spark bottomConveyor;
-private Spark bottomConveyor2;
 private Spark topConveyor;
-private Spark topConveyor2;
 private DigitalInput ballLocation1;
 private DigitalInput ballLocation2;
 private DigitalInput ballLocation3;

@@ -87,8 +87,8 @@ public class Inputs {
             getOperatorButton(4).whenActive(new InstantCommand(() -> m_subsystem.m_conveyor.stopConveyors()));
             // getOperatorButton(9).whenActive(new InstantCommand(() -> m_subsystem.m_shooter.openShooterGate()));
             // getOperatorButton(10).whenActive(new InstantCommand(() -> m_subsystem.m_shooter.closeShooterGate()));
-            getOperatorButton(5).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.openGate()));
-            getOperatorButton(3).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.closeGate()));
+            //getOperatorButton(5).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.openGate()));
+            //getOperatorButton(3).whenActive(new InstantCommand(() -> m_subsystem.m_lowGoalGate.closeGate()));
             m_subsystem.m_turret.moveTurret(getOperatorControls().getX());
         }
         else{

@@ -20,7 +20,7 @@ public class Shooter extends SubsystemBase {
     private CANPIDController flywheelPIDController;
     private static final AlternateEncoderType kAltEncType = AlternateEncoderType.kQuadrature;
     private static final int kCPR = 8192;
-    private Spark shooterGate;
+    //private Spark shooterGate;
     private DigitalInput shooterGateOpen;
     private DigitalInput shooterGateClosed;
     private TunableNumber P = new TunableNumber("Shooter PID (P)", 0.0012);
@@ -48,7 +48,6 @@ public class Shooter extends SubsystemBase {
         flywheelPIDController.setOutputRange(kMinOutput, kMaxOutput);
         flywheelPIDController.setFeedbackDevice(flywheel.getAlternateEncoder(kAltEncType, kCPR));
          
-        addChild("ShooterGate", shooterGate);
         addChild("ShooterGateOpen", shooterGateOpen);
         addChild("ShooterGateClosed", shooterGateClosed);  
     }

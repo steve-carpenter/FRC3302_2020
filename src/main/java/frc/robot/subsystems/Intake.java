@@ -12,7 +12,7 @@ private Spark rearIntake;
 
     public Intake() {
 frontIntake = new Spark(RobotMap.INTAKE_FRONT_ROLLER_SPARK);
-rearIntake = new Spark(RobotMap.INTAKE_REAR_ROLLER_SPARK);
+// rearIntake = new Spark(RobotMap.INTAKE_REAR_ROLLER_SPARK);
 
 frontIntake.setInverted(false);
 rearIntake.setInverted(false);

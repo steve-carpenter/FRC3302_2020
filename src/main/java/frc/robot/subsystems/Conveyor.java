@@ -21,9 +21,7 @@ private DigitalInput ballLocation4;
 
     public Conveyor() {
 bottomConveyor = new Spark(RobotMap.CONVEYOR_BOTTOM_ROLLER_SPARK);
-bottomConveyor2 = new Spark(RobotMap.CONVEYOR_BOTTOM_ROLLER_SPARK2);
 topConveyor = new Spark(RobotMap.CONVEYOR_TOP_ROLLER_SPARK);
-topConveyor2 = new Spark(RobotMap.CONVEYOR_TOP_ROLLER_SPARK2);
 ballLocation1 = new DigitalInput(RobotMap.CONVEYOR_BALL_1_PRESENT);
 ballLocation2 = new DigitalInput(RobotMap.CONVEYOR_BALL_2_PRESENT);
 ballLocation3 = new DigitalInput(RobotMap.CONVEYOR_BALL_3_PRESENT);
@@ -64,12 +62,11 @@ addChild("BallLocation4",ballLocation4);
 
     public void topConveyor(int speed){
         topConveyor.set(speed);
-        topConveyor2.set(speed);
     }
 
     public void bottomConveyor(int speed){
         bottomConveyor.set(speed);
-        bottomConveyor2.set(speed);
+
     }
 
     public boolean isBall1Present(){

@@ -38,8 +38,8 @@ public class Shooter extends SubsystemBase {
     public Shooter(){
         flywheel = new CANSparkMax(RobotMap.SHOOTER_FLYWHEEL_SPARK, MotorType.kBrushless);
         flywheelPIDController = flywheel.getPIDController();
-        shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
-        shooterGate.setInverted(false);
+        // shooterGate = new Spark(RobotMap.SHOOTER_GATE_PWM);
+        // shooterGate.setInverted(false);
 
         flywheelPIDController.setP(kP);
         flywheelPIDController.setI(kI);
@@ -85,13 +85,13 @@ public class Shooter extends SubsystemBase {
     }
   }
 
-    public boolean isShooterGateOpen(){
-        return shooterGateOpen.get();
-    }
+    // public boolean isShooterGateOpen(){
+    //     return shooterGateOpen.get();
+    // }
 
-    public boolean isShooterGateClosed(){
-        return shooterGateClosed.get();
-    }
+    // public boolean isShooterGateClosed(){
+    //     return shooterGateClosed.get();
+    // }
 
     public void setFlywheelSpeed(double setpoint){
         flywheelPIDController.setReference(setpoint, ControlType.kVelocity);
@@ -130,15 +130,15 @@ public class Shooter extends SubsystemBase {
         flywheel.set(power);
       }
 
-      public void openShooterGate(){
-        shooterGate.set(0.5);
-      }
+      // public void openShooterGate(){
+      //   shooterGate.set(0.5);
+      // }
 
-      public void closeShooterGate(){
-        shooterGate.set(-0.5);
-      }
+      // public void closeShooterGate(){
+      //   shooterGate.set(-0.5);
+      // }
 
-      public void stopShooterGate(){
-        shooterGate.set(0);
-      }
+      // public void stopShooterGate(){
+      //   shooterGate.set(0);
+      // }
 }
